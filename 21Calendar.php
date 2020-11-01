@@ -162,6 +162,7 @@
 
 <body>
   <?php
+  ini_set('display_errors','off');//關閉輸出錯誤訊息
   //定義變數
   $year = date('Y');
   $month = date('m');
