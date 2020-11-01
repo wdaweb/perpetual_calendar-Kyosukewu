@@ -27,12 +27,39 @@
       bottom: 0;
       color: #fff;
     }
+
+    table {
+      height: 75vh;
+    }
+
+    thead tr {
+      background: #333;
+      height: 50px;
+    }
+
+    tbody tr {
+      background: #ddd;
+    }
+
+    tbody td {
+      /* height: 100%; */
+      font-size: 20px;
+      border: 1px solid;
+    }
+
+    .carousel-control-prev {
+      left: -10%;
+    }
+
+    .carousel-control-next {
+      right: -10%;
+    }
   </style>
 </head>
 
 <body>
   <div class="container-xxl">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Kyosuke's Calendar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,39 +84,51 @@
     </nav>
     <?php
     //定義變數
-    $thisMonth = date('m');
-    $monthDay = date('t');
-    $fDate = strtotime(date('Y-m-', '1'));
-    $startDayWeek = date('w', $fDate);
-    $today=date('d');
-    $year=date('Y');
+    $year = $_GET['y'] ? $_GET['y'] : date('Y'); //當前年
+    $thisMonth = $_GET['m'] ? $_GET['m'] : date('m'); //當前月
+    $fDate = strtotime("{$year}-{$thisMonth}-1"); //當月一號時間
+    $monthDay = date('t', $fDate); //當月天數
+    $startDayWeek = date('w', $fDate); //當月一號是周幾
+    $today = date('d', $fDate); //今日日期
+
+
     //定義一個月有幾週
     if ($startDayWeek + $monthDay <= 28) {
       $week = 4;
     } elseif ($startDayWeek + $monthDay <= 35) {
       $week = 5;
-    } elseif ($startDayWeek + $monthDay > 35 && $startDayWeek + $monthDay < 37) {
+    } elseif ($startDayWeek + $monthDay > 35 && $startDayWeek + $monthDay < 38) {
       $week = 6;
     }
     //定義跳月計算邏輯
-    if($thisMonth>12){
-      $year=$year+1;
-      $next=
+    //下一月/年
+    $nextYear = $year;
+    $nextMonth = $thisMonth + 1;
+    if ($nextMonth > 12) {
+      $nextYear = $year + 1;
+      $nextMonth = 1;
+    }
+    //上一月/年
+    $preYear = $year;
+    $preMonth = $thisMonth - 1;
+    if ($preMonth < 1) {
+      $preYear = $year - 1;
+      $preMonth = 12;
     }
     ?>
-    <div class="card mb-3">
+    <div class="card mb-3 vh-75">
       <div class="row g-0">
         <div class="item col-md-3 border-right">
-          <img class="d-none d-md-block w-100" src="https://picsum.photos/600/1500/?random=1" alt="...">
+          <img class="d-none d-md-block w-100 h-100" src="https://picsum.photos/200/500/?random=1" alt="...">
           <img class="md-pic d-black d-md-none w-100" src="https://picsum.photos/739/300/?random=1" alt="...">
           <div class="overlay">
-            <div class="year"><?= $year?>年</div>
-            <div class="month"><?= $thisMonth ?>月<?=$today?>日</div>
+            <div class="year"><?= $year ?>年</div>
+            <div class="month"><?= $thisMonth ?>月</div>
           </div>
         </div>
 
         <div class="col-12 col-md-9">
-          <div class="card-body bg-secondary">
+          <div class="card-body px-0 my-auto">
             <table class="container-fluid text-center text-light">
               <thead>
                 <td>日</td>
@@ -102,16 +141,32 @@
               </thead>
               <tbody>
                 <?php
-
-
-
-
-
-
+                for ($i = 0; $i < $week; $i++) {
+                  echo "<tr>";
+                  for ($j = 0; $j < 7; $j++) {
+                    echo "<td>";
+                    if ($i == 0 && $j < $startDayWeek) {
+                      //none
+                    } elseif ((($i * 7) + ($j + 1)) - $startDayWeek > $monthDay) {
+                      //none
+                    } else {
+                      echo (($i * 7) + ($j + 1) - $startDayWeek);
+                    }
+                    echo "</td>";
+                  }
+                  echo "<tr>";
+                }
                 ?>
-
-
               </tbody>
+            </table>
+            <div class="btn">
+              <a class="carousel-control-prev" href="21Calendar.php?y=<?php echo $preYear ?>&m=<?php echo $preMonth ?>" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+              </a>
+              <a class="carousel-control-next" href="21Calendar.php?y=<?php echo $nextYear ?>&m=<?php echo $nextMonth ?>" role="button" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
