@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
   <link rel="stylesheet" href="css/reset.css">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js" integrity="sha384-BOsAfwzjNJHrJ8cZidOg56tcQWfp6y72vEJ8xQ9w6Quywb24iOsW913URv1IS4GD" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/a1381bb91e.js" crossorigin="anonymous"></script>
   <title>Kyosuke's Calendar</title>
   <style type="text/css">
     .item {
@@ -47,12 +48,94 @@
       border: 1px solid;
     }
 
-    .carousel-control-prev {
-      left: -10%;
+    @media screen and (min-width:1500px) {
+      .btn2 {
+        display: none;
+      }
+
+      .carousel-control-prev {
+        left: -5%;
+        width: 5%;
+      }
+
+      .carousel-control-next {
+        right: -5%;
+        width: 5%;
+      }
+
+      .btn2-p {
+        left: -8%;
+        width: 3%;
+      }
+
+      .btn2-n {
+        right: -8%;
+        width: 3%;
+      }
     }
 
-    .carousel-control-next {
-      right: -10%;
+    @media screen and (max-width:1500px) and (min-width:768px) {
+      .btn2 {
+        display: none;
+      }
+
+      .card-body {
+        position: relative;
+      }
+
+      .carousel-control-prev {
+        left: 15%;
+        width: 5%;
+        justify-content: flex-end;
+      }
+
+      .carousel-control-next {
+        right: 15%;
+        width: 5%;
+        justify-content: flex-end;
+      }
+
+      .btn2-p {
+        left: 5%;
+        width: 3%;
+      }
+
+      .btn2-n {
+        right: 5%;
+        width: 3%;
+      }
+    }
+
+    @media screen and (max-width:768px) {
+      .btn {
+        display: none;
+      }
+
+      .card-body {
+        position: relative;
+      }
+
+      .carousel-control-prev {
+        left: 10%;
+        width: 5%;
+        justify-content: center;
+      }
+
+      .carousel-control-next {
+        right: 10%;
+        width: 5%;
+        justify-content: center;
+      }
+
+      .btn2-p {
+        left: 3%;
+        width: 3%;
+      }
+
+      .btn2-n {
+        right: 3%;
+        width: 3%;
+      }
     }
   </style>
 </head>
@@ -73,7 +156,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="21Calendar.php?y=<?php echo $year ?>&m=<?php echo $month ?>">回今天日期</a>
+              <a class="nav-link align-center" href="21Calendar.php?y=<?php echo $year ?>&m=<?php echo $month ?>">回當前日期</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">其他查詢</a>
@@ -124,11 +207,29 @@
       <div class="row g-0">
         <div class="item col-md-3 border-right">
           <img class="d-none d-md-block w-100 h-100" src="https://picsum.photos/200/500/?random=1" alt="...">
-          <img class="md-pic d-black d-md-none w-100" src="https://picsum.photos/739/300/?random=1" alt="...">
+          <img class="md-pic d-black d-md-none w-100" src="https://picsum.photos/768/200/?random=1" alt="...">
           <div class="overlay">
             <div class="year"><?= $year ?>年</div>
             <div class="month"><?= $thisMonth ?>月</div>
           </div>
+          <div class="btn2">
+                  <a class="carousel-control-prev flex-column" href="21Calendar.php?y=<?php echo $preYear ?>&m=<?php echo $preMonth ?>" role="button" data-slide="prev">
+                    <p class="h2 fas fa-angle-left"></p>
+                    <p>Month</p>
+                  </a>
+                  <a class="btn2-p carousel-control-prev flex-column" href="21Calendar.php?y=<?php echo $preYear - 1 ?>&m=<?php echo $thisMonth ?>" role="button" data-slide="prev">
+                    <p class="h2 fas fa-angle-double-left"></p>
+                    <p>Year</p>
+                  </a>
+                  <a class="carousel-control-next flex-column" href="21Calendar.php?y=<?php echo $nextYear ?>&m=<?php echo $nextMonth ?>" role="button" data-slide="next">
+                    <span class="h2 fas fa-angle-right"></span>
+                    <p>Month</p>
+                  </a>
+                  <a class="btn2-n carousel-control-next flex-column" href="21Calendar.php?y=<?php echo $nextYear + 1 ?>&m=<?php echo $thisMonth ?>" role="button" data-slide="prev">
+                    <p class="h2 fas fa-angle-double-right"></p>
+                    <p>Year</p>
+                  </a>
+                </div>
         </div>
 
         <div class="col-12 col-md-9">
@@ -148,7 +249,7 @@
                 for ($i = 0; $i < $week; $i++) {
                   echo "<tr>";
                   for ($j = 0; $j < 7; $j++) {
-                    echo "<td>";
+                    echo "<td class='date text-dark border border-white'>";
                     if ($i == 0 && $j < $startDayWeek) {
                       //none
                     } elseif ((($i * 7) + ($j + 1)) - $startDayWeek > $monthDay) {
@@ -164,11 +265,21 @@
               </tbody>
             </table>
             <div class="btn">
-              <a class="carousel-control-prev" href="21Calendar.php?y=<?php echo $preYear ?>&m=<?php echo $preMonth ?>" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
+              <a class="carousel-control-prev flex-column" href="21Calendar.php?y=<?php echo $preYear ?>&m=<?php echo $preMonth ?>" role="button" data-slide="prev">
+                <p class="text-dark h2 fas fa-angle-left"></p>
+                <p class="text-dark">Month</p>
               </a>
-              <a class="carousel-control-next" href="21Calendar.php?y=<?php echo $nextYear ?>&m=<?php echo $nextMonth ?>" role="button" data-slide="next">
-                <span class="carousel-control-next-icon"></span>
+              <a class="btn2-p carousel-control-prev flex-column" href="21Calendar.php?y=<?php echo $preYear - 1 ?>&m=<?php echo $thisMonth ?>" role="button" data-slide="prev">
+                <p class="text-dark h2 fas fa-angle-double-left"></p>
+                <p class="text-dark">Year</p>
+              </a>
+              <a class="carousel-control-next flex-column" href="21Calendar.php?y=<?php echo $nextYear ?>&m=<?php echo $nextMonth ?>" role="button" data-slide="next">
+                <span class="text-dark h2 fas fa-angle-right"></span>
+                <p class="text-dark">Month</p>
+              </a>
+              <a class="btn2-n carousel-control-next flex-column" href="21Calendar.php?y=<?php echo $nextYear + 1 ?>&m=<?php echo $thisMonth ?>" role="button" data-slide="prev">
+                <p class="text-dark h2 fas fa-angle-double-right"></p>
+                <p class="text-dark">Year</p>
               </a>
             </div>
           </div>
