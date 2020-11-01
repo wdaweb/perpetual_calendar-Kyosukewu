@@ -58,6 +58,11 @@
 </head>
 
 <body>
+  <?php
+  //定義變數
+  $year = date('Y');
+  $month = date('m');
+  ?>
   <div class="container-xxl">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
       <div class="container-fluid">
@@ -68,7 +73,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="#">回今天日期</a>
+              <a class="nav-link" href="21Calendar.php?y=<?php echo $year ?>&m=<?php echo $month ?>">回今天日期</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">其他查詢</a>
@@ -90,8 +95,6 @@
     $monthDay = date('t', $fDate); //當月天數
     $startDayWeek = date('w', $fDate); //當月一號是周幾
     $today = date('d', $fDate); //今日日期
-
-
     //定義一個月有幾週
     if ($startDayWeek + $monthDay <= 28) {
       $week = 4;
@@ -115,6 +118,7 @@
       $preYear = $year - 1;
       $preMonth = 12;
     }
+
     ?>
     <div class="card mb-3 vh-75">
       <div class="row g-0">
