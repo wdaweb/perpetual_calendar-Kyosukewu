@@ -49,7 +49,7 @@
     //定義變數
     $year = isset($_GET['year']) ? $_GET['year'] : date('Y'); //當前年
     $thisMonth = isset($_GET['month']) ? $_GET['month'] : date('m'); //當前月
-    $fDate = strtotime("{$year}-{$thisMonth}-1"); //當月一號時間
+    $fDate = strtotime("{$year}-{$thisMonth}-1"); //當月一號時間 Y-m-d
     $monthDay = date('t', $fDate); //當月天數
     $startDayWeek = date('w', $fDate); //當月一號是周幾
     $today = date('d', $fDate); //今日日期
@@ -76,7 +76,20 @@
       $preYear = $year - 1;
       $preMonth = 12;
     }
-
+    $enmonth=['1'  => "January",
+    '2'  => "February",
+    '3'  => "March",
+    '4'  => "April",
+    '5'  => "May",
+    '6'  => "June",
+    '7'  => "July",
+    '8'  => "August",
+    '9'  => "September",
+    '10' => "October",
+    '11' => "November",
+    '12' => "December"];
+    $ec=$enmonth[$thisMonth];
+    
     ?>
     <div class="card mb-3 vh-75">
       <div class="row g-0">
@@ -110,12 +123,11 @@
                   </a>
                 </div>
         </div>
-
         <div class="col-12 col-md-9">
           <div class="card-body px-0 ">
-            <div class="msg">
-              <div class="smonth"><?=date("F",strtotime($thisMonth));?></div>
-              <div class="syear"><?=date("Y",strtotime($year));?></div>
+            <div class="msg text-secondary text-center">
+              <div class="smonth h3"><?=$ec?></div>
+              <div class="syear h4"><?=$year?></div>
             </div>
             <table class="container-fluid text-center text-light">
               <thead>
