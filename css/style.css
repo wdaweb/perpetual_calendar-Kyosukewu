@@ -1,145 +1,163 @@
+body {
+  height: 100vh;
+  background-image: linear-gradient(135deg, #eee 30%, #ccc 90%);
+}
+.card{
+  box-shadow:0px 0px 15px #555;
+}
 .item {
+  position: relative;
+}
+.overlay {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.4);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #fff;
+}
+
+table {
+  height: 80vh;
+}
+
+thead tr {
+  background: #333;
+  height: 50px;
+}
+tbody tr {
+  background: #ddd;
+}
+
+tbody td {
+  font-size: 20px;
+  height: 12%;
+}
+
+@media screen and (min-width: 1500px) {
+  .btn2 {
+    display: none;
+  }
+
+  .carousel-control-prev {
+    left: -5%;
+    width: 5%;
+    flex-direction: column;
+  }
+
+  .carousel-control-next {
+    right: -5%;
+    width: 5%;
+    flex-direction: column;
+  }
+
+  .btn2-p {
+    left: -8%;
+    width: 3%;
+  }
+
+  .btn2-n {
+    right: -8%;
+    width: 3%;
+  }
+}
+
+@media screen and (max-width: 1500px) and (min-width: 768px) {
+  .btn2 {
+    display: none;
+  }
+
+  .card-body {
     position: relative;
   }
 
-  .overlay {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    background: rgba(0, 0, 0, .4);
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    color: #fff;
+  .carousel-control-prev {
+    left: 20%;
+    width: 5%;
+    bottom: 3%;
+    align-items: flex-end;
   }
 
+  .carousel-control-next {
+    right: 20%;
+    width: 5%;
+    bottom: 3%;
+    align-items: flex-end;
+  }
+  .d1{
+    margin-left: .5rem;
+    margin-bottom: .7rem;
+  }
+  .d2{
+    margin-right: .5rem;
+    margin-bottom: .7rem;
+    order: -1;
+  }
+
+  .btn2-p {
+    left: 5%;
+    width: 3%;
+  }
+
+  .btn2-n {
+    right: 5%;
+    width: 3%;
+  }
+}
+
+@media screen and (max-width: 768px) {
   table {
-    height: 80vh;
-  }
-
-  thead tr {
-    background: #333;
-    height: 50px;
-  }
-  tbody tr {
-    background: #ddd;
-  }
-
-  tbody td {
-    font-size: 20px;
-    height: 12%;
-  }
-  @media screen and (min-width:1500px) {
-    .btn2 {
-      display: none;
-    }
-
-    .carousel-control-prev {
-      left: -5%;
-      width: 5%;
-    }
-
-    .carousel-control-next {
-      right: -5%;
-      width: 5%;
-    }
-
-    .btn2-p {
-      left: -8%;
-      width: 3%;
-    }
-
-    .btn2-n {
-      right: -8%;
-      width: 3%;
-    }
-  }
-
-  @media screen and (max-width:1500px) and (min-width:768px) {
-    .btn2 {
-      display: none;
-    }
-
-    .card-body {
-      position: relative;
-    }
-
-    .carousel-control-prev {
-      left: 15%;
-      width: 5%;
-      bottom: -1%;
-      justify-content: flex-end;
-    }
-
-    .carousel-control-next {
-      right: 15%;
-      width: 5%;
-      bottom: -1%;
-      justify-content: flex-end;
-    }
-
-    .btn2-p {
-      left: 5%;
-      width: 3%;
-    }
-
-    .btn2-n {
-      right: 5%;
-      width: 3%;
-    }
-  }
-
-  @media screen and (max-width:768px) {
-    table {
     height: 60vh;
   }
-    .btn {
-      display: none;
-    }
-
-    .card-body {
-      position: relative;
-    }
-
-    .carousel-control-prev {
-      left: 15%;
-      width: 5%;
-      justify-content: center;
-    }
-
-    .carousel-control-next {
-      right: 15%;
-      width: 5%;
-      justify-content: center;
-    }
-
-    .btn2-p {
-      left: 5%;
-      width: 3%;
-    }
-
-    .btn2-n {
-      right: 5%;
-      width: 3%;
-    }
+  .btn1 {
+    display: none;
   }
-    @media screen and (max-height:700px) {
-      .d1{
-        display: none;
-      }
-      .carousel-control-prev {
-      width: 5%;
-      bottom: 1%;
-      justify-content: flex-end;
-    }
 
-    .carousel-control-next {
-      width: 5%;
-      bottom: 1%;
-      justify-content: flex-end;
-    }
-    }
+  .card-body {
+    position: relative;
+  }
+
+  .carousel-control-prev {
+    left: 15%;
+    width: 5%;
+    justify-content: center;
+  }
+
+  .carousel-control-next {
+    right: 15%;
+    width: 5%;
+    justify-content: center;
+  }
+
+  .btn2-p {
+    left: 5%;
+    width: 3%;
+  }
+
+  .btn2-n {
+    right: 5%;
+    width: 3%;
+  }
+}
+@media screen and (max-height: 700px) {
+  .d1,.d2 {
+    display: none;
+  }
+  .carousel-control-prev {
+    width: 5%;
+    bottom: 1%;
+    justify-content: flex-end;
+  }
+
+  .carousel-control-next {
+    width: 5%;
+    bottom: 1%;
+    justify-content: flex-end;
+  }
+}
