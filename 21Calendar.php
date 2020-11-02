@@ -14,10 +14,12 @@
 
 <body>
   <?php
-  ini_set('display_errors','off');//關閉輸出錯誤訊息
+  //ini_set('display_errors','off');//關閉輸出錯誤訊息
   //定義變數
+  //date_default_timezone_set("Asia/Taipei");
   $year = date('Y');
   $month = date('m');
+  
   ?>
   <div class="container-xxl">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -35,8 +37,8 @@
               <a class="nav-link" href="#">其他查詢</a>
             </li>
           </ul>
-          <form class="d-flex">
-            <input class="form-control mr-2" type="search" placeholder="YYYYmmdd">
+          <form class="d-flex" action="21Calendar.php" method="post">
+            <input class="form-control mr-2" type="date" name="date">
             <button class="btn btn-outline-secondary" type="submit">Search</button>
           </form>
 
@@ -45,8 +47,8 @@
     </nav>
     <?php
     //定義變數
-    $year = $_GET['y'] ? $_GET['y'] : date('Y'); //當前年
-    $thisMonth = $_GET['m'] ? $_GET['m'] : date('m'); //當前月
+    $year = isset($_GET['year']) ? $_GET['year'] : date('Y'); //當前年
+    $thisMonth = isset($_GET['month']) ? $_GET['month'] : date('m'); //當前月
     $fDate = strtotime("{$year}-{$thisMonth}-1"); //當月一號時間
     $monthDay = date('t', $fDate); //當月天數
     $startDayWeek = date('w', $fDate); //當月一號是周幾
@@ -82,8 +84,12 @@
           <img class="d-none d-md-block w-100 h-100" src="https://picsum.photos/200/500/?random=1" alt="...">
           <img class="md-pic d-black d-md-none w-100" src="https://picsum.photos/768/200/?random=1" alt="...">
           <div class="overlay">
-            <div class="year"><?= $year ?>年</div>
-            <div class="month"><?= $thisMonth ?>月</div>
+            <div class="today">TODAY</div>
+            <div class="year"><?= date('Y') ?></div>
+            <div class="month"><?= date('M') ?></div>
+            <div class="month"><?= date('d') ?></div>
+            <div class="month"><?= date('l') ?></div>
+            <!-- <div class="time"><?= date('H:i:s') ?></div> -->
           </div>
           <div class="btn2">
                   <a class="carousel-control-prev flex-column text-decoration-none" href="21Calendar.php?y=<?php echo $preYear ?>&m=<?php echo $preMonth ?>" role="button" data-slide="prev">
@@ -107,15 +113,19 @@
 
         <div class="col-12 col-md-9">
           <div class="card-body px-0 ">
+            <div class="msg">
+              <div class="smonth"><?=date("F",strtotime($thisMonth));?></div>
+              <div class="syear"><?=date("Y",strtotime($year));?></div>
+            </div>
             <table class="container-fluid text-center text-light">
               <thead>
-                <td>日</td>
-                <td>一</td>
-                <td>二</td>
-                <td>三</td>
-                <td>四</td>
-                <td>五</td>
-                <td>六</td>
+                <td style="width: 14%;">SUN</td>
+                <td style="width: 14%;">MON</td>
+                <td style="width: 14%;">TUE</td>
+                <td style="width: 14%;">WED</td>
+                <td style="width: 14%;">THU</td>
+                <td style="width: 14%;">FRI</td>
+                <td style="width: 14%;">SAT</td>
               </thead>
               <tbody>
                 <?php
@@ -138,19 +148,19 @@
               </tbody>
             </table>
             <div class="btn">
-              <a class="carousel-control-prev flex-column" href="21Calendar.php?y=<?php echo $preYear ?>&m=<?php echo $preMonth ?>" role="button" data-slide="prev">
+              <a class="carousel-control-prev flex-column" href="?year=<?php echo $preYear ?>&month=<?php echo $preMonth ?>" role="button" data-slide="prev">
                 <p class="text-dark h2 fas fa-angle-left"></p>
                 <p class="d1 text-dark">Month</p>
               </a>
-              <a class="btn2-p carousel-control-prev flex-column" href="21Calendar.php?y=<?php echo $preYear - 1 ?>&m=<?php echo $thisMonth ?>" role="button" data-slide="prev">
+              <a class="btn2-p carousel-control-prev flex-column" href="?year=<?php echo $preYear - 1 ?>&month=<?php echo $thisMonth ?>" role="button" data-slide="prev">
                 <p class="text-dark h2 fas fa-angle-double-left"></p>
                 <p class="d1 text-dark">Year</p>
               </a>
-              <a class="carousel-control-next flex-column" href="21Calendar.php?y=<?php echo $nextYear ?>&m=<?php echo $nextMonth ?>" role="button" data-slide="next">
+              <a class="carousel-control-next flex-column" href="?year=<?php echo $nextYear ?>&month=<?php echo $nextMonth ?>" role="button" data-slide="next">
                 <span class="text-dark h2 fas fa-angle-right"></span>
                 <p class="d1 text-dark">Month</p>
               </a>
-              <a class="btn2-n carousel-control-next flex-column" href="21Calendar.php?y=<?php echo $nextYear + 1 ?>&m=<?php echo $thisMonth ?>" role="button" data-slide="prev">
+              <a class="btn2-n carousel-control-next flex-column" href="?year=<?php echo $nextYear + 1 ?>&month=<?php echo $thisMonth ?>" role="button" data-slide="prev">
                 <p class="text-dark h2 fas fa-angle-double-right"></p>
                 <p class="d1 text-dark">Year</p>
               </a>

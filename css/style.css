@@ -25,7 +25,6 @@
     background: #333;
     height: 50px;
   }
-
   tbody tr {
     background: #ddd;
   }
@@ -34,7 +33,6 @@
     font-size: 20px;
     height: 12%;
   }
-
   @media screen and (min-width:1500px) {
     .btn2 {
       display: none;
