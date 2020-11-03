@@ -43,11 +43,17 @@ tbody td {
 
 td:nth-child(6n+1){
   background: #fcc;
-  color: #eee;
+  color: #999;
 }
 
 thead td:nth-child(6n+1){
   background:rgb(131, 18, 18);
+}
+.today{
+  color: #ddd;
+  background: rgb(0, 106, 114);
+  box-shadow: 0 0 20px #000;
+  opacity: .3;
 }
 @media screen and (min-width: 1500px) {
   .btn2 {

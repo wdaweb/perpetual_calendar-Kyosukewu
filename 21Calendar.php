@@ -91,8 +91,6 @@
       $preYear = $year - 1;
       $preMonth = 12;
     }
-    $pYear=$year-1;
-    $nYear=$year+1;
     //月份換算英文格式
     $enmonth = [
       '1'  => "January",
@@ -130,7 +128,7 @@
               <p class="fas fa-angle-left"></p>
               <p class="h6 d-none d-sm-block">Month</p>
             </a>
-            <a class="btn2-p carousel-control-prev flex-column text-decoration-none" href="?year=<?php echo $pYear ?>&month=<?php echo $thisMonth ?>" role="button" data-slide="prev">
+            <a class="btn2-p carousel-control-prev flex-column text-decoration-none" href="?year=<?php echo $year - 1 ?>&month=<?php echo $thisMonth ?>" role="button" data-slide="prev">
               <p class="fas fa-angle-double-left"></p>
               <p class="h6 d-none d-sm-block">Year</p>
             </a>
@@ -138,7 +136,7 @@
               <span class="fas fa-angle-right"></span>
               <p class="h6 d-none d-sm-block">Month</p>
             </a>
-            <a class="btn2-n carousel-control-next flex-column text-decoration-none" href="?year=<?php echo $nYear ?>&month=<?php echo $thisMonth ?>" role="button" data-slide="prev">
+            <a class="btn2-n carousel-control-next flex-column text-decoration-none" href="?year=<?php echo $year + 1 ?>&month=<?php echo $thisMonth ?>" role="button" data-slide="prev">
               <p class="fas fa-angle-double-right"></p>
               <p class="h6 d-none d-sm-block">Year</p>
             </a>
@@ -165,13 +163,17 @@
                 for ($i = 0; $i < $week; $i++) {
                   echo "<tr>";
                   for ($j = 0; $j < 7; $j++) {
-                    echo "<td class='date  border border-white'>";
-                    if ($i == 0 && $j < $startDayWeek) {
-                      //none
-                    } elseif ((($i * 7) + ($j + 1)) - $startDayWeek > $monthDay) {
-                      //none
+                    if ($year==date('Y') && $thisMonth==date('m') && (($i * 7) + ($j + 1)) == date('j')) {
+                      echo "<td class='date today border border-white'>".date('j');
                     } else {
-                      echo (($i * 7) + ($j + 1) - $startDayWeek);
+                      echo "<td class='date  border border-white'>";
+                      if ($i == 0 && $j < $startDayWeek) {
+                        //none
+                      } elseif ((($i * 7) + ($j + 1)) - $startDayWeek > $monthDay) {
+                        //none
+                      } else {
+                        echo (($i * 7) + ($j + 1) - $startDayWeek);
+                      }
                     }
                     echo "</td>";
                   }
@@ -185,7 +187,7 @@
                 <p class="text-dark h2 fas fa-angle-left"></p>
                 <p class="d1 text-dark">Month</p>
               </a>
-              <a class="btn2-p carousel-control-prev" href="?year=<?php echo $pYear ?>&month=<?php echo $thisMonth ?>" role="button" data-slide="prev">
+              <a class="btn2-p carousel-control-prev" href="?year=<?php echo $year - 1 ?>&month=<?php echo $thisMonth ?>" role="button" data-slide="prev">
                 <p class="text-dark h2 fas fa-angle-double-left"></p>
                 <p class="d1 text-dark">Year</p>
               </a>
@@ -193,7 +195,7 @@
                 <span class="text-dark h2 fas fa-angle-right"></span>
                 <p class="d2 text-dark">Month</p>
               </a>
-              <a class="btn2-n carousel-control-next" href="?year=<?php echo $nYear ?>&month=<?php echo $thisMonth ?>" role="button" data-slide="prev">
+              <a class="btn2-n carousel-control-next" href="?year=<?php echo $year + 1 ?>&month=<?php echo $thisMonth ?>" role="button" data-slide="prev">
                 <p class="text-dark h2 fas fa-angle-double-right"></p>
                 <p class="d2 text-dark">Year</p>
               </a>
