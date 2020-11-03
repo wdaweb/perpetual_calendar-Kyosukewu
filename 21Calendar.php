@@ -32,9 +32,9 @@
             <li class="nav-item">
               <a class="nav-link align-center" href="21Calendar.php?y=<?php echo $year ?>&m=<?php echo $month ?>">回當前日期</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="#">日期查詢</a>
-            </li>
+            </li> -->
           </ul>
           <form class="d-flex" action="21Calendar.php" method="get">
             <input class="form-control mr-2" type="text" name="year" maxlength="4" size="3" placeholder="YYYY">
@@ -161,7 +161,7 @@
                 for ($i = 0; $i < $week; $i++) {
                   echo "<tr>";
                   for ($j = 0; $j < 7; $j++) {
-                    echo "<td class='date text-dark border border-white'>";
+                    echo "<td class='date  border border-white'>";
                     if ($i == 0 && $j < $startDayWeek) {
                       //none
                     } elseif ((($i * 7) + ($j + 1)) - $startDayWeek > $monthDay) {
