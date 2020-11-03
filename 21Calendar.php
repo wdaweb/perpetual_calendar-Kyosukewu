@@ -61,8 +61,8 @@
     $monthDay = date('t', $fDate); //當月天數28-31
     $startDayWeek = date('w', $fDate); //當月一號是周幾0-6
     $today = date('d', $fDate); //今日日期
-    $pDays=date('t', strtotime("{$year}-{$thisMonth}-1 -1 Months"));//上月天數
-    $nDays=date('w', strtotime("{$year}-{$thisMonth}-{$monthDay}"));//本月結束是周幾
+    $pDays = date('t', strtotime("{$year}-{$thisMonth}-1 -1 Months")); //上月天數
+    $nDays = date('w', strtotime("{$year}-{$thisMonth}-{$monthDay}")); //本月結束是周幾
     //定義一個月有幾週
     if ($startDayWeek + $monthDay <= 28) {
       $week = 4;
@@ -162,19 +162,19 @@
               </thead>
               <tbody>
                 <?php
-                
+
                 //萬年曆本體
                 for ($i = 0; $i < $week; $i++) {
                   echo "<tr>";
                   for ($j = 0; $j < 7; $j++) {
-                    if ($year == date('Y') && $thisMonth == date('m') && (($i * 7) + ($j + 1)) == date('j')) {//標註今日
+                    if ($year == date('Y') && $thisMonth == date('m') && (($i * 7) + ($j + 1)) == date('j')) { //標註今日
                       echo "<td class='date today border border-white'>" . date('j');
                     } elseif ($i == 0 && $j < $startDayWeek) {
-                        echo "<td class='date pmonth border border-white'>".($j+1-$startDayWeek+$pDays);//none
-                      } elseif ((($i * 7) + ($j + 1)) - $startDayWeek > $monthDay) {
-                        echo "<td class='date nmonth border border-white'>".($j-$nDays);//none
-                      } else {
-                        echo "<td class='date h4 border border-white'>".(($i * 7) + ($j + 1) - $startDayWeek);
+                      echo "<td class='date pmonth border border-white'>" . ($j + 1 - $startDayWeek + $pDays); //none
+                    } elseif ((($i * 7) + ($j + 1)) - $startDayWeek > $monthDay) {
+                      echo "<td class='date nmonth border border-white'>" . ($j - $nDays); //none
+                    } else {
+                      echo "<td class='date h4 border border-white'>" . (($i * 7) + ($j + 1) - $startDayWeek);
                     }
                     echo "</td>";
                   }
@@ -205,7 +205,22 @@
         </div>
       </div>
     </div>
-
+    <!-- <div class="row footer">
+      <?php
+      $rYear = rand(date('Y'), date('Y') + 1);
+      $rMonth = rand(1, 12);
+      $rDay = rand(1, date('t', $rMonth));
+      ?>
+      <div class="col-12 col-3 d-block">
+        <a class="btn btn-outline-dark" href="21Calendar.php?year=<?php echo $rYear ?>&month=<?php echo $rMonth ?>">Pick good day!</a>
+      </div>
+      <div class="col-12 col-9">
+        <div class="alert alert-warning" role="alert">
+          <?= "Info：幫您精挑細選了".$year."年".$thisMonth ."月". $rDay."日這個特別日子，趕快安排些活動吧！" ?>
+        </div>
+      </div>
+    </div> -->
+  </div>
 </body>
 
 </html>
