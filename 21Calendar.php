@@ -69,15 +69,12 @@
     } elseif ($startDayWeek + $monthDay > 35 && $startDayWeek + $monthDay < 38) {
       $week = 6;
     }
-
-
     //搜尋年月
-    if (!empty($_REQUEST['year']) && !empty($_REQUEST['month'])) {
+    if (!empty($_REQUEST['year'])) {
       $year = $_REQUEST['year'];
       $month = $_REQUEST['month'];
     } else {
-      $year = date('Y');
-      $month = $_REQUEST['month'];
+      $year = date('Y');//若年份為空值則帶入現在年份
     }
     //定義跳月計算邏輯
     //下一月/年
