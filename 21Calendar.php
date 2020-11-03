@@ -51,7 +51,7 @@
         </div>
       </div>
 
-      
+
     </nav>
     <?php
     //定義變數
@@ -68,6 +68,16 @@
       $week = 5;
     } elseif ($startDayWeek + $monthDay > 35 && $startDayWeek + $monthDay < 38) {
       $week = 6;
+    }
+
+
+    //搜尋年月
+    if (!empty($_REQUEST['year']) && !empty($_REQUEST['month'])) {
+      $year = $_REQUEST['year'];
+      $month = $_REQUEST['month'];
+    } else {
+      $year = date('Y');
+      $month = $_REQUEST['month'];
     }
     //定義跳月計算邏輯
     //下一月/年
@@ -100,11 +110,6 @@
       '12' => "December"
     ];
     $ec = $enmonth[$thisMonth];
-    //搜尋年月
-    if (!empty($_REQUEST['year']) && !empty($_REQUEST['month'])) {
-      $year = $_REQUEST['year'];
-      $month = $_REQUEST['month'];
-    }
     ?>
     <div class="card mb-3 vh-75">
       <div class="row g-0">
