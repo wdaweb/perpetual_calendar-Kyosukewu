@@ -58,9 +58,11 @@
     $year = isset($_GET['year']) ? $_GET['year'] : date('Y'); //當前年
     $thisMonth = isset($_GET['month']) ? $_GET['month'] : date('m'); //當前月
     $fDate = strtotime("{$year}-{$thisMonth}-1"); //當月一號時間 Y-m-d
-    $monthDay = date('t', $fDate); //當月天數
-    $startDayWeek = date('w', $fDate); //當月一號是周幾
+    $monthDay = date('t', $fDate); //當月天數28-31
+    $startDayWeek = date('w', $fDate); //當月一號是周幾0-6
     $today = date('d', $fDate); //今日日期
+    $pDays=date('t', strtotime("{$year}-{$thisMonth}-1 -1 Months"));//上月天數
+    $nDays=date('w', strtotime("{$year}-{$thisMonth}-{$monthDay}"));//本月結束是周幾
     //定義一個月有幾週
     if ($startDayWeek + $monthDay <= 28) {
       $week = 4;
@@ -160,20 +162,19 @@
               </thead>
               <tbody>
                 <?php
+                
+                //萬年曆本體
                 for ($i = 0; $i < $week; $i++) {
                   echo "<tr>";
                   for ($j = 0; $j < 7; $j++) {
-                    if ($year==date('Y') && $thisMonth==date('m') && (($i * 7) + ($j + 1)) == date('j')) {
-                      echo "<td class='date today border border-white'>".date('j');
-                    } else {
-                      echo "<td class='date  border border-white'>";
-                      if ($i == 0 && $j < $startDayWeek) {
-                        //none
+                    if ($year == date('Y') && $thisMonth == date('m') && (($i * 7) + ($j + 1)) == date('j')) {//標註今日
+                      echo "<td class='date today border border-white'>" . date('j');
+                    } elseif ($i == 0 && $j < $startDayWeek) {
+                        echo "<td class='date pmonth border border-white'>".($j+1-$startDayWeek+$pDays);//none
                       } elseif ((($i * 7) + ($j + 1)) - $startDayWeek > $monthDay) {
-                        //none
+                        echo "<td class='date nmonth border border-white'>".($j-$nDays);//none
                       } else {
-                        echo (($i * 7) + ($j + 1) - $startDayWeek);
-                      }
+                        echo "<td class='date h4 border border-white'>".(($i * 7) + ($j + 1) - $startDayWeek);
                     }
                     echo "</td>";
                   }

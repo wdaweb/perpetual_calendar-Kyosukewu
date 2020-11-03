@@ -30,6 +30,7 @@ table {
 thead tr {
   background: #333;
   height: 50px;
+  color: #fff;
 }
 tbody tr {
   background: #ddd;
@@ -41,19 +42,25 @@ tbody td {
   color: #666;
 }
 
-td:nth-child(6n+1){
+tbody td:nth-child(6n+1){
   background: #fcc;
-  color: #999;
+  color: #666;
 }
 
 thead td:nth-child(6n+1){
   background:rgb(131, 18, 18);
 }
 .today{
-  color: #ddd;
-  background: rgb(0, 106, 114);
-  box-shadow: 0 0 20px #000;
-  opacity: .3;
+  color: #fff;
+  background: rgb(124, 246, 255);
+  box-shadow: 0 0 20px #fff;
+  text-shadow: 0 0 10px rgb(50, 111, 116);
+  /* opacity: .3; */
+}
+.pmonth,.nmonth{
+  background: #000;
+  color: #fff;
+  opacity: .1;
 }
 @media screen and (min-width: 1500px) {
   .btn2 {
