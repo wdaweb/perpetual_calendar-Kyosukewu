@@ -30,7 +30,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link align-center" href="21Calendar.php?y=<?php echo $year ?>&m=<?php echo $month ?>">回當前日期</a>
+              <a class="nav-link align-center" href="21Calendar.php?year=<?php echo $year ?>&month=<?php echo $month ?>">回當前日期</a>
             </li>
             <!-- <li class="nav-item">
               <a class="nav-link" href="#">日期查詢</a>
@@ -74,23 +74,25 @@
       $year = $_REQUEST['year'];
       $month = $_REQUEST['month'];
     } else {
-      $year = date('Y');//若年份為空值則帶入現在年份
+      $year = date('Y'); //若年份為空值則帶入現在年份
     }
     //定義跳月計算邏輯
-    //下一月/年
+    //下一月
     $nextYear = $year;
     $nextMonth = $thisMonth + 1;
     if ($nextMonth > 12) {
       $nextYear = $year + 1;
       $nextMonth = 1;
     }
-    //上一月/年
+    //上一月
     $preYear = $year;
     $preMonth = $thisMonth - 1;
     if ($preMonth < 1) {
       $preYear = $year - 1;
       $preMonth = 12;
     }
+    $pYear=$year-1;
+    $nYear=$year+1;
     //月份換算英文格式
     $enmonth = [
       '1'  => "January",
@@ -124,19 +126,19 @@
             <!-- <div class="time"><?= date('H:i:s') ?></div> -->
           </div>
           <div class="btn2">
-            <a class="carousel-control-prev flex-column text-decoration-none" href="21Calendar.php?y=<?php echo $preYear ?>&m=<?php echo $preMonth ?>" role="button" data-slide="prev">
+            <a class="carousel-control-prev flex-column text-decoration-none" href="?year=<?php echo $preYear ?>&month=<?php echo $preMonth ?>" role="button" data-slide="prev">
               <p class="fas fa-angle-left"></p>
               <p class="h6 d-none d-sm-block">Month</p>
             </a>
-            <a class="btn2-p carousel-control-prev flex-column text-decoration-none" href="21Calendar.php?y=<?php echo $preYear - 1 ?>&m=<?php echo $thisMonth ?>" role="button" data-slide="prev">
+            <a class="btn2-p carousel-control-prev flex-column text-decoration-none" href="?year=<?php echo $pYear ?>&month=<?php echo $thisMonth ?>" role="button" data-slide="prev">
               <p class="fas fa-angle-double-left"></p>
               <p class="h6 d-none d-sm-block">Year</p>
             </a>
-            <a class="carousel-control-next flex-column text-decoration-none" href="21Calendar.php?y=<?php echo $nextYear ?>&m=<?php echo $nextMonth ?>" role="button" data-slide="next">
+            <a class="carousel-control-next flex-column text-decoration-none" href="?year=<?php echo $nextYear ?>&month=<?php echo $nextMonth ?>" role="button" data-slide="next">
               <span class="fas fa-angle-right"></span>
               <p class="h6 d-none d-sm-block">Month</p>
             </a>
-            <a class="btn2-n carousel-control-next flex-column text-decoration-none" href="21Calendar.php?y=<?php echo $nextYear + 1 ?>&m=<?php echo $thisMonth ?>" role="button" data-slide="prev">
+            <a class="btn2-n carousel-control-next flex-column text-decoration-none" href="?year=<?php echo $nYear ?>&month=<?php echo $thisMonth ?>" role="button" data-slide="prev">
               <p class="fas fa-angle-double-right"></p>
               <p class="h6 d-none d-sm-block">Year</p>
             </a>
@@ -183,7 +185,7 @@
                 <p class="text-dark h2 fas fa-angle-left"></p>
                 <p class="d1 text-dark">Month</p>
               </a>
-              <a class="btn2-p carousel-control-prev" href="?year=<?php echo $preYear - 1 ?>&month=<?php echo $thisMonth ?>" role="button" data-slide="prev">
+              <a class="btn2-p carousel-control-prev" href="?year=<?php echo $pYear ?>&month=<?php echo $thisMonth ?>" role="button" data-slide="prev">
                 <p class="text-dark h2 fas fa-angle-double-left"></p>
                 <p class="d1 text-dark">Year</p>
               </a>
@@ -191,7 +193,7 @@
                 <span class="text-dark h2 fas fa-angle-right"></span>
                 <p class="d2 text-dark">Month</p>
               </a>
-              <a class="btn2-n carousel-control-next" href="?year=<?php echo $nextYear + 1 ?>&month=<?php echo $thisMonth ?>" role="button" data-slide="prev">
+              <a class="btn2-n carousel-control-next" href="?year=<?php echo $nYear ?>&month=<?php echo $thisMonth ?>" role="button" data-slide="prev">
                 <p class="text-dark h2 fas fa-angle-double-right"></p>
                 <p class="d2 text-dark">Year</p>
               </a>
