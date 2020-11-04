@@ -45,15 +45,24 @@
           $today = date('d', $fDate); //今日日期
           $pDays = date('t', strtotime("{$year}-{$thisMonth}-1 -1 Months")); //上月天數
           $nDays = date('w', strtotime("{$year}-{$thisMonth}-{$monthDay}")); //本月結束是周幾
+          //搜尋年月
+          if (isset($_REQUEST['year'])) {
+            $year = $_REQUEST['year'];
+            $month = $_REQUEST['month'];
+          }
           ?>
 
           <form class="d-flex" action="21Calendar.php" method="get">
-            <input class="form-control mr-2" type="text" name="year" maxlength="4" size="3" placeholder="YYYY">
+            <input class="form-control mr-2" type="text" name="year" maxlength="4" size="3" placeholder="YYYY" value="<?=date('Y')?>" required>
 
             <select class="form-control mr-2" name="month">
               <?php
               for ($i = 1; $i < 13; $i++) {
-                echo "<option value='" . $i . "'>" . $i . "月</option>";
+                if($i==$thisMonth){
+                  echo "<option value='" . $i . "' selected>" . $i . "月</option>";
+                }else{
+                  echo "<option value='" . $i . "'>" . $i . "月</option>";
+                }
               }
               ?>
             </select>
@@ -79,13 +88,7 @@
     } elseif ($startDayWeek + $monthDay > 35 && $startDayWeek + $monthDay < 38) {
       $week = 6;
     }
-    //搜尋年月
-    if (!empty($_REQUEST['year'])) {
-      $year = $_REQUEST['year'];
-      $month = $_REQUEST['month'];
-    } else {
-      $year = date('Y'); //若年份為空值則帶入現在年份
-    }
+
     //定義跳月計算邏輯
     //下一月
     $nextYear = $year;
