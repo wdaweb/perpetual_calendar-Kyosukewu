@@ -62,6 +62,14 @@ thead td:nth-child(6n+1){
   color: #fff;
   opacity: .1;
 }
+a .pick .btn .btn-outline-secondary .ml-3{
+  width: 150px;
+}
+.alert{
+  top: 0;
+  right: 20px;
+  z-index: 10;
+}
 @media screen and (min-width: 1500px) {
   .btn2 {
     display: none;
