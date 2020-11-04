@@ -18,7 +18,9 @@
   //date_default_timezone_set("Asia/Taipei");
   $year = date('Y');
   $month = date('m');
-
+  $rYear = rand(date('Y'), date('Y') + 10);
+  $rMonth = rand(1, 12);
+  $rDay = rand(1, date('t', $rMonth));
   ?>
   <div class="container-xxl">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -32,10 +34,19 @@
             <li class="nav-item">
               <a class="nav-link align-center" href="21Calendar.php?year=<?php echo $year ?>&month=<?php echo $month ?>">回當前日期</a>
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link" href="#">日期查詢</a>
-            </li> -->
           </ul>
+          <?php
+          //定義變數
+          $year = isset($_GET['year']) ? $_GET['year'] : date('Y'); //當前年
+          $thisMonth = isset($_GET['month']) ? $_GET['month'] : date('m'); //當前月
+          $fDate = strtotime("{$year}-{$thisMonth}-1"); //當月一號時間 Y-m-d
+          $monthDay = date('t', $fDate); //當月天數28-31
+          $startDayWeek = date('w', $fDate); //當月一號是周幾0-6
+          $today = date('d', $fDate); //今日日期
+          $pDays = date('t', strtotime("{$year}-{$thisMonth}-1 -1 Months")); //上月天數
+          $nDays = date('w', strtotime("{$year}-{$thisMonth}-{$monthDay}")); //本月結束是周幾
+          ?>
+
           <form class="d-flex" action="21Calendar.php" method="get">
             <input class="form-control mr-2" type="text" name="year" maxlength="4" size="3" placeholder="YYYY">
 
@@ -47,6 +58,12 @@
               ?>
             </select>
             <button class="btn btn-outline-secondary" type="submit" value="submit">Search</button>
+            <!-- <div class="w-25">
+          <a class="btn btn-outline-secondary" href="21Calendar.php?year=<?php echo $rYear ?>&month=<?php echo $rMonth ?>">Pick good day!</a>
+      <div class="alert alert-warning" role="alert">
+        <?= "Info：幫您精挑細選了" . $year . "年" . $thisMonth . "月" . $rDay . "日這個特別日子，趕快安排些活動吧！" ?>
+        </div>
+        </div> -->
           </form>
         </div>
       </div>
@@ -54,15 +71,6 @@
 
     </nav>
     <?php
-    //定義變數
-    $year = isset($_GET['year']) ? $_GET['year'] : date('Y'); //當前年
-    $thisMonth = isset($_GET['month']) ? $_GET['month'] : date('m'); //當前月
-    $fDate = strtotime("{$year}-{$thisMonth}-1"); //當月一號時間 Y-m-d
-    $monthDay = date('t', $fDate); //當月天數28-31
-    $startDayWeek = date('w', $fDate); //當月一號是周幾0-6
-    $today = date('d', $fDate); //今日日期
-    $pDays = date('t', strtotime("{$year}-{$thisMonth}-1 -1 Months")); //上月天數
-    $nDays = date('w', strtotime("{$year}-{$thisMonth}-{$monthDay}")); //本月結束是周幾
     //定義一個月有幾週
     if ($startDayWeek + $monthDay <= 28) {
       $week = 4;
@@ -205,21 +213,6 @@
         </div>
       </div>
     </div>
-    <!-- <div class="row footer">
-      <?php
-      $rYear = rand(date('Y'), date('Y') + 1);
-      $rMonth = rand(1, 12);
-      $rDay = rand(1, date('t', $rMonth));
-      ?>
-      <div class="col-12 col-3 d-block">
-        <a class="btn btn-outline-dark" href="21Calendar.php?year=<?php echo $rYear ?>&month=<?php echo $rMonth ?>">Pick good day!</a>
-      </div>
-      <div class="col-12 col-9">
-        <div class="alert alert-warning" role="alert">
-          <?= "Info：幫您精挑細選了".$year."年".$thisMonth ."月". $rDay."日這個特別日子，趕快安排些活動吧！" ?>
-        </div>
-      </div>
-    </div> -->
   </div>
 </body>
 
