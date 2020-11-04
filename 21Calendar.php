@@ -84,12 +84,19 @@
     opacity: .1;
   }
 
-  .pick {
+  #pick {
     width: 150px;
+  }
+
+  .sday {
+    color: #f33 !important;
+    background: #ffa !important;
+    box-shadow: 0 0 20px #ffd;
   }
 
   @media screen and (min-width: 1500px) {
     .alert {
+      display: none;
       top: 3%;
       right: 35%;
       opacity: .9;
@@ -125,6 +132,7 @@
 
   @media screen and (max-width: 1500px) and (min-width: 768px) {
     .alert {
+      display: none;
       top: 3%;
       right: 10%;
       opacity: .9;
@@ -177,6 +185,7 @@
 
   @media screen and (max-width: 768px) {
     .alert {
+      display: none;
       top: 3%;
       right: 0%;
       opacity: .9;
@@ -257,7 +266,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link align-center" href="21Calendar.php?year=<?php echo $year ?>&month=<?php echo $month ?>">回當前日期</a>
+              <a class="nav-link align-center" href="21Calendar.php?year=<?php echo $year ?>&month=<?php echo $month ?>">Back to today</a>
             </li>
           </ul>
           <?php
@@ -270,9 +279,15 @@
           $today = date('d', $fDate); //今日日期
           $pDays = date('t', strtotime("{$year}-{$thisMonth}-1 -1 Months")); //上月天數
           $nDays = date('w', strtotime("{$year}-{$thisMonth}-{$monthDay}")); //本月結束是周幾
-          $rYear = rand(date('Y'), date('Y'));
-          $rMonth = rand(date('m'), 12);
-          $rDay = rand($today, date('t', $rMonth));
+          $rYear = rand(date('Y'), date('Y') + 1);
+
+          if ($rYear > date('Y')) {
+            $rMonth = rand(1, 12);
+            $rDay = rand(1, date('t', $rMonth));
+          } else {
+            $rMonth = rand(date('m'), 12);
+            $rDay = rand($today, date('t', $rMonth));
+          }
 
           ?>
           <form class="d-flex" action="21Calendar.php" method="get">
@@ -290,17 +305,15 @@
               ?>
             </select>
             <button class="btn btn-outline-secondary" type="submit" value="submit">Search</button>
-            <div id="pick">
-              <a class="pick btn btn-outline-secondary ml-3" href="21Calendar.php?year=<?php echo $year ?>&month=<?php echo $rMonth ?>">Pick good day!</a>
-            </div>
-            <!-- <script type="text/javascript">
+            <div id="pick" class="pick btn btn-outline-secondary ml-3">Pick good day!</div>
+            <script type="text/javascript">
               $(document).ready(function() {//文件準備完畢開始做事
                 //做事的位置
                 $("#pick").click(function() {
-                  $("#alert").show();
+                  $("#alert").toggle();
                 })
               })
-            </script> -->
+            </script>
           </form>
         </div>
       </div>
@@ -348,7 +361,9 @@
     $ec = $enmonth[$thisMonth];
     ?>
     <div id="alert" class="alert position-absolute alert-warning alert-dismissible fade show" role="alert">
-      <?= "Info：幫您精挑細選了" . $year . "年" . $thisMonth . "月" . $rDay . "日這個特別日子，趕快安排些活動吧！" ?>
+      <?= "Info：幫您精挑細選了" . $year . "年" . $thisMonth . "月" . $rDay . "日這個特別日子，趕快安排些活動吧！ " ?>
+      <br>
+      <!-- <a href="21Calendar.php?year=<?php echo $rYear ?>&month=<?php echo $rMonth ?>">點擊這裡前往命定的日子！</a> -->
       <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
     </div>
     <div class="card mb-3 vh-75">
@@ -411,6 +426,28 @@
                   }
                   echo "<tr>";
                 }
+                ?>
+                <?php
+
+                //萬年曆本體2
+                // for ($i = 0; $i < $week; $i++) {
+                //   echo "<tr>";
+                //   for ($j = 0; $j < 7; $j++) {
+                //     if ((($i * 7) + ($j + 1) - $startDayWeek) == $rDay) {
+                //       echo "<td class='sday border border-white'>" . $rDay;
+                //     } elseif ($year == date('Y') && $thisMonth == date('m') && (($i * 7) + ($j + 1)) == date('j')) { //標註今日
+                //       echo "<td class='date today border border-white'>" . date('j');
+                //     } elseif ($i == 0 && $j < $startDayWeek) {
+                //       echo "<td class='date pmonth border border-white'>" . ($j + 1 - $startDayWeek + $pDays); //none
+                //     } elseif ((($i * 7) + ($j + 1)) - $startDayWeek > $monthDay) {
+                //       echo "<td class='date nmonth border border-white'>" . ($j - $nDays); //none
+                //     } else {
+                //       echo "<td class='date h4 border border-white'>" . (($i * 7) + ($j + 1) - $startDayWeek);
+                //     }
+                //     echo "</td>";
+                //   }
+                //   echo "<tr>";
+                // }
                 ?>
               </tbody>
             </table>
