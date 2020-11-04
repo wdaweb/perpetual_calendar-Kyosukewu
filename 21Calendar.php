@@ -85,7 +85,7 @@
   }
 
   #pick {
-    width: 150px;
+    width: 300%;
   }
 
   .sday {
@@ -98,7 +98,7 @@
     .alert {
       display: none;
       top: 3%;
-      right: 35%;
+      right: 0%;
       opacity: .9;
       z-index: 10;
     }
@@ -134,7 +134,7 @@
     .alert {
       display: none;
       top: 3%;
-      right: 10%;
+      right: 0%;
       opacity: .9;
       z-index: 10;
     }
@@ -363,7 +363,7 @@
     <div id="alert" class="alert position-absolute alert-warning alert-dismissible fade show" role="alert">
       <?= "Info：幫您精挑細選了" . $year . "年" . $thisMonth . "月" . $rDay . "日這個特別日子，趕快安排些活動吧！ " ?>
       <br>
-      <!-- <a href="21Calendar.php?year=<?php echo $rYear ?>&month=<?php echo $rMonth ?>">點擊這裡前往命定的日子！</a> -->
+      <a class="text-center" href="21Calendar.php?year=<?php echo $rYear ?>&month=<?php echo $rMonth ?>">不喜歡這天？ 點擊這裡找尋新的命定之日！</a>
       <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
     </div>
     <div class="card mb-3 vh-75">
