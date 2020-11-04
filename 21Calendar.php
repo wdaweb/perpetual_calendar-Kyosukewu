@@ -30,7 +30,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav mr-auto">
             <li class="nav-item">
               <a class="nav-link align-center" href="21Calendar.php?year=<?php echo $year ?>&month=<?php echo $month ?>">回當前日期</a>
             </li>
@@ -45,11 +45,6 @@
           $today = date('d', $fDate); //今日日期
           $pDays = date('t', strtotime("{$year}-{$thisMonth}-1 -1 Months")); //上月天數
           $nDays = date('w', strtotime("{$year}-{$thisMonth}-{$monthDay}")); //本月結束是周幾
-          //搜尋年月
-          if (isset($_REQUEST['year'])) {
-            $year = $_REQUEST['year'];
-            $month = $_REQUEST['month'];
-          }
           ?>
 
           <form class="d-flex" action="21Calendar.php" method="get">
@@ -129,12 +124,6 @@
           <div class="overlay">
             <div class="syear display-1"><?= $year ?></div>
             <div class="smonth display-6 border-bottom"><?= $ec ?></div>
-            <!-- <div class="today">TODAY</div>
-            <div class="year"><?= date('Y') ?></div>
-            <div class="month"><?= date('M') ?></div>
-            <div class="month"><?= date('d') ?></div>
-            <div class="month"><?= date('l') ?></div> -->
-            <!-- <div class="time"><?= date('H:i:s') ?></div> -->
           </div>
           <div class="btn2">
             <a class="carousel-control-prev flex-column text-decoration-none" href="?year=<?php echo $preYear ?>&month=<?php echo $preMonth ?>" role="button" data-slide="prev">
@@ -157,10 +146,6 @@
         </div>
         <div class="col-12 col-md-9">
           <div class="card-body px-0 ">
-            <!-- <div class="msg text-secondary text-center">
-              <div class="smonth h3"><?= $ec ?></div>
-              <div class="syear h4"><?= $year ?></div>
-            </div> -->
             <table class="container-fluid text-center text-light">
               <thead>
                 <td style="width: 14%;">SUN</td>
