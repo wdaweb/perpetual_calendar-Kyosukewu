@@ -15,6 +15,7 @@
   body {
     height: 100vh;
     background-image: linear-gradient(135deg, #fff 30%, #eee 80%);
+    overflow: hidden;
   }
 
   .card {
@@ -307,7 +308,7 @@
             <button class="btn btn-outline-secondary" type="submit" value="submit">Search</button>
             <div id="pick" class="pick btn btn-outline-secondary ml-3">Pick good day!</div>
             <script type="text/javascript">
-              $(document).ready(function() {//文件準備完畢開始做事
+              $(document).ready(function() { //文件準備完畢開始做事
                 //做事的位置
                 $("#pick").click(function() {
                   $("#alert").toggle();
@@ -473,6 +474,244 @@
         </div>
       </div>
     </div>
+  </div>
+<style>
+    <?php
+    if ($thisMonth == 1) {
+      echo "
+  .f1{
+    right: 80%;
+    animation: f1 1.5s forwards;
+  }
+  .f2{
+    left: 75%;
+    animation: f2 1.5s .2s forwards;
+  }
+  .f3{
+    right: 30%;
+    animation: f3 1.5s .4s forwards;
+  }
+  .f4{
+    left: 20%;
+    animation: f4 1.5s .3s forwards;
+  }
+  .f5{
+    right: 50%;
+    animation: f5 1.5s .5s forwards;
+  }
+    .f1,.f2,.f3,.f4,.f5{
+      bottom: -100%;
+      width: 10%;
+    }
+  @keyframes f1 {
+    45%{
+      right: 80%;
+      bottom: 50%;
+      width: 10%;
+    }
+    50%{
+      right: 60%;
+      bottom: 20%;
+      width: 60%;
+      opacity: 1;
+    }
+    100%{
+      right: 60%;
+      bottom: 20%;
+      width: 60%;
+      opacity: 0;
+    }
+  }
+  @keyframes f2 {
+    45%{
+      left: 75%;
+      bottom: 10%;
+      width: 10%;
+    }
+    50%{
+      left: 55%;
+      bottom: 0%;
+      width: 50%;
+      opacity: 1;
+    }
+    100%{
+      left: 55%;
+      bottom: 0%;
+      width: 50%;
+      opacity: 0;
+    }
+  }
+  @keyframes f3 {
+    45%{
+      right: 30%;
+      bottom: 15%;
+      width: 10%;
+    }
+    50%{
+      right: 10%;
+      bottom: -10%;
+      width: 40%;
+      opacity: 1;
+    }
+    100%{
+      right: 10%;
+      bottom: -10%;
+      width: 40%;
+      opacity: 0;
+    }
+  }
+  @keyframes f4 {
+    45%{
+      left: 20%;
+      bottom: 10%;
+      width: 10%;
+    }
+    50%{
+      left: 0%;
+      bottom: -15%;
+      width: 55%;
+      opacity: 1;
+    }
+    100%{
+      left: 0%;
+      bottom: -15%;
+      width: 55%;
+      opacity: 0;
+    }
+  }
+  @keyframes f5 {
+    45%{
+      right: 50%;
+      bottom: 50%;
+      width: 10%;
+    }
+    50%{
+      right: 10%;
+      bottom: -10%;
+      width: 100%;
+      opacity: 1;
+    }
+    100%{
+      right: 10%;
+      bottom: -10%;
+      width: 100%;
+      opacity: 0;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .f1,.f2,.f3,.f4,.f5{
+      bottom: -100%;
+      width: 10%;
+    }
+    @keyframes f1 {
+    45%{
+      right: 80%;
+      bottom: 70%;
+      width: 10%;
+    }
+    50%{
+      right: 60%;
+      bottom: 60%;
+      width: 60%;
+      opacity: 1;
+    }
+    100%{
+      right: 60%;
+      bottom: 60%;
+      width: 60%;
+      opacity: 0;
+    }
+  }
+  @keyframes f2 {
+    45%{
+      left: 75%;
+      bottom: 60%;
+      width: 10%;
+    }
+    50%{
+      left: 55%;
+      bottom: 50%;
+      width: 50%;
+      opacity: 1;
+    }
+    100%{
+      left: 55%;
+      bottom: 50%;
+      width: 50%;
+      opacity: 0;
+    }
+  }
+  @keyframes f3 {
+    45%{
+      right: 30%;
+      bottom: 65%;
+      width: 10%;
+    }
+    50%{
+      right: 10%;
+      bottom: 60%;
+      width: 40%;
+      opacity: 1;
+    }
+    100%{
+      right: 10%;
+      bottom: 60%;
+      width: 40%;
+      opacity: 0;
+    }
+  }
+  @keyframes f4 {
+    45%{
+      left: 20%;
+      bottom: 50%;
+      width: 10%;
+    }
+    50%{
+      left: 0%;
+      bottom: 45%;
+      width: 55%;
+      opacity: 1;
+    }
+    100%{
+      left: 0%;
+      bottom: 45%;
+      width: 55%;
+      opacity: 0;
+    }
+  }
+  @keyframes f5 {
+    45%{
+      right: 50%;
+      bottom: 60%;
+      width: 10%;
+    }
+    50%{
+      right: 10%;
+      bottom: 60%;
+      width: 100%;
+      opacity: 1;
+    }
+    100%{
+      right: 10%;
+      bottom: 60%;
+      width: 100%;
+      opacity: 0;
+    }
+  }
+  }";
+    } else {
+      echo ".f1,.f2,.f3,.f4,.f5{
+        display:none;
+      }";
+    }
+    ?>
+</style>
+  <div class="fire">
+    <img class="f1 position-absolute" src="https://i.postimg.cc/1XgBtk7Z/firework.png">
+    <img class="f2 position-absolute" src="https://i.postimg.cc/d1Cmc2hq/fireworkb.png">
+    <img class="f3 position-absolute" src="https://i.postimg.cc/5yqB6f5T/fireworkg.png">
+    <img class="f4 position-absolute" src="https://i.postimg.cc/HnC0YrMb/fireworkb2.png">
+    <img class="f5 position-absolute" src="https://i.postimg.cc/jqzQ8hVc/fireworkr.png">
   </div>
 </body>
 
