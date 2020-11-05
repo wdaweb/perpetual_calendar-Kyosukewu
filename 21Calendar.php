@@ -41,10 +41,6 @@
     color: #fff;
   }
 
-  table {
-    height: 80vh;
-  }
-
   thead tr {
     background: #333;
     height: 50px;
@@ -63,7 +59,7 @@
 
   tbody td:nth-child(6n+1) {
     background: #fcc;
-    color: #666;
+    color: #f77;
   }
 
   thead td:nth-child(6n+1) {
@@ -71,6 +67,15 @@
   }
 
   .today {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ccc;
+    color: #eee;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     color: #fff;
     background: rgb(124, 246, 255);
     box-shadow: 0 0 20px #fff;
@@ -80,9 +85,15 @@
 
   .pmonth,
   .nmonth {
-    background: #000;
-    color: #fff;
-    opacity: .1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ccc;
+    color: #eee;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
 
   #pick {
@@ -95,7 +106,16 @@
     box-shadow: 0 0 20px #ffd;
   }
 
+  .sign {
+    bottom: 10%;
+    left: 0;
+    right: 0;
+  }
+
   @media screen and (min-width: 1500px) {
+    table {
+    height: 80vh;
+  }
     .alert {
       display: none;
       top: 3%;
@@ -132,6 +152,9 @@
   }
 
   @media screen and (max-width: 1500px) and (min-width: 768px) {
+    table {
+    height: 75vh;
+  }
     .alert {
       display: none;
       top: 3%;
@@ -146,6 +169,7 @@
 
     .card-body {
       position: relative;
+      padding: 1rem 1rem 3.5rem;
     }
 
     .carousel-control-prev {
@@ -185,6 +209,13 @@
   }
 
   @media screen and (max-width: 768px) {
+    .sign {
+      font-size:1rem;
+      bottom: 10%;
+      left: 0;
+      right: 0;
+    }
+
     .alert {
       display: none;
       top: 3%;
@@ -194,7 +225,7 @@
     }
 
     table {
-      height: 60vh;
+      height: 45vh;
     }
 
     .btn1 {
@@ -203,6 +234,7 @@
 
     .card-body {
       position: relative;
+      padding: 0;
     }
 
     .carousel-control-prev {
@@ -367,7 +399,7 @@
       <a class="text-center" href="21Calendar.php?year=<?php echo $rYear ?>&month=<?php echo $rMonth ?>">不喜歡這天？ 點擊這裡找尋新的命定之日！</a>
       <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
     </div>
-    <div class="card mb-3 vh-75">
+    <div class="card mb-3">
       <div class="row g-0">
         <div class="item col-md-3 border-right">
           <img class="d-none d-md-block w-100 h-100" src="https://picsum.photos/200/500/?random=1" alt="...">
@@ -396,7 +428,7 @@
           </div>
         </div>
         <div class="col-12 col-md-9">
-          <div class="card-body px-0 ">
+          <div class="card-body">
             <table class="container-fluid text-center text-light">
               <thead>
                 <td style="width: 14%;">SUN</td>
@@ -409,34 +441,12 @@
               </thead>
               <tbody>
                 <?php
-
+                $date = "";
                 //萬年曆本體
-                for ($i = 0; $i < $week; $i++) {
-                  echo "<tr>";
-                  for ($j = 0; $j < 7; $j++) {
-                    if ($year == date('Y') && $thisMonth == date('m') && (($i * 7) + ($j + 1)) == date('j')) { //標註今日
-                      echo "<td class='date today border border-white'>" . date('j');
-                    } elseif ($i == 0 && $j < $startDayWeek) {
-                      echo "<td class='date pmonth border border-white'>" . ($j + 1 - $startDayWeek + $pDays); //none
-                    } elseif ((($i * 7) + ($j + 1)) - $startDayWeek > $monthDay) {
-                      echo "<td class='date nmonth border border-white'>" . ($j - $nDays); //none
-                    } else {
-                      echo "<td class='date h4 border border-white'>" . (($i * 7) + ($j + 1) - $startDayWeek);
-                    }
-                    echo "</td>";
-                  }
-                  echo "<tr>";
-                }
-                ?>
-                <?php
-
-                //萬年曆本體2
                 // for ($i = 0; $i < $week; $i++) {
                 //   echo "<tr>";
                 //   for ($j = 0; $j < 7; $j++) {
-                //     if ((($i * 7) + ($j + 1) - $startDayWeek) == $rDay) {
-                //       echo "<td class='sday border border-white'>" . $rDay;
-                //     } elseif ($year == date('Y') && $thisMonth == date('m') && (($i * 7) + ($j + 1)) == date('j')) { //標註今日
+                //     if ($year == date('Y') && $thisMonth == date('m') && (($i * 7) + ($j + 1)) == date('j')) { //標註今日
                 //       echo "<td class='date today border border-white'>" . date('j');
                 //     } elseif ($i == 0 && $j < $startDayWeek) {
                 //       echo "<td class='date pmonth border border-white'>" . ($j + 1 - $startDayWeek + $pDays); //none
@@ -449,6 +459,35 @@
                 //   }
                 //   echo "<tr>";
                 // }
+                ?>
+                <?php
+                include 'holiday.php';
+                //萬年曆本體2
+                for ($i = 0; $i < $week; $i++) {
+                  echo "<tr>";
+                  for ($j = 0; $j < 7; $j++) {
+                    echo "<td class='position-relative border border-white'>";
+                    $date = '';
+                    if ($year == date('Y') && $thisMonth == date('m') && (($i * 7) + ($j + 1)) == date('j')) { //標註今日
+                            echo "<div class='date today position-absolute border border-white'>".date('j')."</div>";
+                    }
+                    if ($i == 0 && $j < $startDayWeek) {
+                      echo "<div class='date pmonth position-absolute'>" . ($j + 1 - $startDayWeek + $pDays) . "</div>"; //none
+                    } else if ((($i * 7) + ($j + 1) - $startDayWeek) > $monthDay) {
+                      echo "<div class='date nmonth position-absolute'>".($j - $nDays)."</div>"; //none
+                    } else {
+                      $date = (($i * 7) + ($j + 1) - $startDayWeek);
+                    }
+                    echo $date;
+                    if (!empty($holiday[$thisMonth."-".$date])) {
+                      echo "<br><div class='sign  text-danger position-absolute'>" . $holiday[$thisMonth."-".$date] . "</div>";
+                    };
+                    echo "</div>";
+                  }
+                  echo "</tr>";
+                }
+                //     if ($year == date('Y') && $thisMonth == date('m') && (($i * 7) + ($j + 1)) == date('j')) { //標註今日
+                //       echo "<td class='date today border border-white'>" . date('j');
                 ?>
               </tbody>
             </table>
@@ -475,7 +514,7 @@
       </div>
     </div>
   </div>
-<style>
+  <style>
     <?php
     if ($thisMonth == 1) {
       echo "
@@ -705,7 +744,7 @@
       }";
     }
     ?>
-</style>
+  </style>
   <div class="fire">
     <img class="f1 position-absolute" src="https://i.postimg.cc/1XgBtk7Z/firework.png">
     <img class="f2 position-absolute" src="https://i.postimg.cc/d1Cmc2hq/fireworkb.png">
