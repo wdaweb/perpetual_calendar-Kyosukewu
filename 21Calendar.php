@@ -5,281 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
-  <!-- <link rel="stylesheet" href="css/style.css"> -->
+  <link rel="stylesheet" href="css/style.css">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js" integrity="sha384-BOsAfwzjNJHrJ8cZidOg56tcQWfp6y72vEJ8xQ9w6Quywb24iOsW913URv1IS4GD" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/a1381bb91e.js" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <title>Kyosuke's Calendar</title>
 </head>
-<style>
-  body {
-    height: 100vh;
-    background-image: linear-gradient(135deg, #fff 30%, #eee 80%);
-    overflow: hidden;
-  }
-
-  .card {
-    box-shadow: 0px 0px 15px #555;
-  }
-
-  .item {
-    position: relative;
-  }
-
-  .overlay {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.4);
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    color: #fff;
-  }
-
-  thead tr {
-    background: #333;
-    height: 50px;
-    color: #fff;
-  }
-
-  tbody tr {
-    background: #ddd;
-  }
-
-  tbody td {
-    font-size: 20px;
-    height: 12%;
-    color: #666;
-  }
-
-  tbody td:nth-child(6n+1) {
-    background: #fcc;
-    color: #f77;
-  }
-
-  thead td:nth-child(6n+1) {
-    background: rgb(131, 18, 18);
-  }
-
-  .today {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #ccc;
-    color: #eee;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    color: #fff;
-    background: rgb(124, 246, 255);
-    box-shadow: 0 0 20px #fff;
-    text-shadow: 0 0 10px rgb(50, 111, 116);
-    /* opacity: .3; */
-  }
-
-  .pmonth,
-  .nmonth {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #ccc;
-    color: #eee;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-
-  #pick {
-    width: 300%;
-  }
-
-  .sday {
-    color: #f33 !important;
-    background: #ffa !important;
-    box-shadow: 0 0 20px #ffd;
-  }
-
-  .sign {
-    bottom: 10%;
-    left: 0;
-    right: 0;
-  }
-
-  @media screen and (min-width: 1500px) {
-    table {
-    height: 80vh;
-  }
-    .alert {
-      display: none;
-      top: 3%;
-      right: 0%;
-      opacity: .9;
-      z-index: 10;
-    }
-
-    .btn2 {
-      display: none;
-    }
-
-    .carousel-control-prev {
-      left: -5%;
-      width: 5%;
-      flex-direction: column;
-    }
-
-    .carousel-control-next {
-      right: -5%;
-      width: 5%;
-      flex-direction: column;
-    }
-
-    .btn2-p {
-      left: -8%;
-      width: 3%;
-    }
-
-    .btn2-n {
-      right: -8%;
-      width: 3%;
-    }
-  }
-
-  @media screen and (max-width: 1500px) and (min-width: 768px) {
-    table {
-    height: 75vh;
-  }
-    .alert {
-      display: none;
-      top: 3%;
-      right: 0%;
-      opacity: .9;
-      z-index: 10;
-    }
-
-    .btn2 {
-      display: none;
-    }
-
-    .card-body {
-      position: relative;
-      padding: 1rem 1rem 3.5rem;
-    }
-
-    .carousel-control-prev {
-      left: 20%;
-      width: 5%;
-      top: 95%;
-      height: 5%;
-    }
-
-    .carousel-control-next {
-      right: 20%;
-      width: 5%;
-      top: 95%;
-      height: 5%;
-    }
-
-    .d1 {
-      margin-left: .5rem;
-      margin-bottom: .5rem;
-    }
-
-    .d2 {
-      margin-right: .5rem;
-      margin-bottom: .5rem;
-      order: -1;
-    }
-
-    .btn2-p {
-      left: 5%;
-      width: 3%;
-    }
-
-    .btn2-n {
-      right: 5%;
-      width: 3%;
-    }
-  }
-
-  @media screen and (max-width: 768px) {
-    .sign {
-      font-size:1rem;
-      bottom: 10%;
-      left: 0;
-      right: 0;
-    }
-
-    .alert {
-      display: none;
-      top: 3%;
-      right: 0%;
-      opacity: .9;
-      z-index: 10;
-    }
-
-    table {
-      height: 45vh;
-    }
-
-    .btn1 {
-      display: none;
-    }
-
-    .card-body {
-      position: relative;
-      padding: 0;
-    }
-
-    .carousel-control-prev {
-      left: 15%;
-      width: 5%;
-      justify-content: center;
-    }
-
-    .carousel-control-next {
-      right: 15%;
-      width: 5%;
-      justify-content: center;
-    }
-
-    .btn2-p {
-      left: 5%;
-      width: 3%;
-    }
-
-    .btn2-n {
-      right: 5%;
-      width: 3%;
-    }
-  }
-
-  @media screen and (max-height: 700px) {
-
-    .d1,
-    .d2 {
-      display: none;
-    }
-
-    .carousel-control-prev {
-      width: 5%;
-      bottom: 1%;
-      justify-content: flex-end;
-    }
-
-    .carousel-control-next {
-      width: 5%;
-      bottom: 1%;
-      justify-content: flex-end;
-    }
-  }
-</style>
 
 <body>
   <?php
@@ -391,7 +122,6 @@
       '11' => "November",
       '12' => "December"
     ];
-    $ec = $enmonth[$thisMonth];
     ?>
     <div id="alert" class="alert position-absolute alert-warning alert-dismissible fade show" role="alert">
       <?= "Info：幫您精挑細選了" . $year . "年" . $thisMonth . "月" . $rDay . "日這個特別日子，趕快安排些活動吧！ " ?>
@@ -402,11 +132,61 @@
     <div class="card mb-3">
       <div class="row g-0">
         <div class="item col-md-3 border-right">
-          <img class="d-none d-md-block w-100 h-100" src="https://picsum.photos/200/500/?random=1" alt="...">
-          <img class="md-pic d-black d-md-none w-100" src="https://picsum.photos/768/200/?random=1" alt="...">
+          <?php
+          switch ($thisMonth) {
+            case '1':
+              echo "<img class='d-none d-md-block w-100 h-100' src='https://i.postimg.cc/fRwxNmfw/large1.jpg'>
+              <img class='md-pic d-black d-md-none w-100' src='https://i.postimg.cc/YSTGhWYL/small1.jpg'>";
+              break;
+            case '2':
+              echo "<img class='d-none d-md-block w-100 h-100' src='https://i.postimg.cc/sxdh0h2C/large2.jpg'>
+              <img class='md-pic d-black d-md-none w-100' src='https://i.postimg.cc/WzwhWYK0/small2.jpg'>";
+              break;
+            case '3':
+              echo "<img class='d-none d-md-block w-100 h-100' src='https://i.postimg.cc/fyc94R3t/large3.jpg'>
+              <img class='md-pic d-black d-md-none w-100' src='https://i.postimg.cc/KcPk84z4/small3.jpg'>";
+              break;
+            case '4':
+              echo "<img class='d-none d-md-block w-100 h-100' src='https://i.postimg.cc/rwQ5Fsf5/large4.jpg'>
+              <img class='md-pic d-black d-md-none w-100' src='https://i.postimg.cc/9QFqSVc0/small4.jpg'>";
+              break;
+            case '5':
+              echo "<img class='d-none d-md-block w-100 h-100' src='https://i.postimg.cc/DzNsLDkZ/large5.jpg'>
+              <img class='md-pic d-black d-md-none w-100' src='https://i.postimg.cc/QC3FqZ6X/small5.jpg'>";
+              break;
+            case '6':
+              echo "<img class='d-none d-md-block w-100 h-100' src='https://i.postimg.cc/Ls5LqSWw/large6.jpg'>
+              <img class='md-pic d-black d-md-none w-100' src='https://i.postimg.cc/rwnt2bpJ/small6.jpg'>";
+              break;
+            case '7':
+              echo "<img class='d-none d-md-block w-100 h-100' src='https://i.postimg.cc/fL0dKKDv/large7.jpg'>
+              <img class='md-pic d-black d-md-none w-100' src='https://i.postimg.cc/MKtn141S/small7.jpg'>";
+              break;
+            case '8':
+              echo "<img class='d-none d-md-block w-100 h-100' src='https://i.postimg.cc/7P07JmBH/large8.jpg'>
+              <img class='md-pic d-black d-md-none w-100' src='https://i.postimg.cc/wT9tyHy2/small8.jpg'>";
+              break;
+            case '9':
+              echo "<img class='d-none d-md-block w-100 h-100' src='https://i.postimg.cc/ncxm4B5v/large9.jpg'>
+              <img class='md-pic d-black d-md-none w-100' src='https://i.postimg.cc/wjG3GmW4/small9.jpg'>";
+              break;
+            case '10':
+              echo "<img class='d-none d-md-block w-100 h-100' src='https://i.postimg.cc/VLFCD5Q2/large10.jpg'>
+              <img class='md-pic d-black d-md-none w-100' src='https://i.postimg.cc/x1Cc5RPb/small10.jpg'>";
+              break;
+            case '11':
+              echo "<img class='d-none d-md-block w-100 h-100' src='https://i.postimg.cc/zfyHzjb1/large11.jpg'>
+              <img class='md-pic d-black d-md-none w-100' src='https://i.postimg.cc/W4qtL1CN/small11.jpg'>";
+              break;
+            case '12':
+              echo "<img class='d-none d-md-block w-100 h-100' src='https://i.postimg.cc/DZsWswPj/large12.jpg'>
+              <img class='md-pic d-black d-md-none w-100' src='https://i.postimg.cc/fL4ywhQx/small12.jpg'>";
+              break;
+          };
+          ?>
           <div class="overlay">
             <div class="syear display-1"><?= $year ?></div>
-            <div class="smonth display-6 border-bottom"><?= $ec ?></div>
+            <div class="smonth display-6 border-bottom"><?= $enmonth[$thisMonth] ?></div>
           </div>
           <div class="btn2">
             <a class="carousel-control-prev flex-column text-decoration-none" href="?year=<?php echo $preYear ?>&month=<?php echo $preMonth ?>" role="button" data-slide="prev">
@@ -442,23 +222,6 @@
               <tbody>
                 <?php
                 $date = "";
-                //萬年曆本體
-                // for ($i = 0; $i < $week; $i++) {
-                //   echo "<tr>";
-                //   for ($j = 0; $j < 7; $j++) {
-                //     if ($year == date('Y') && $thisMonth == date('m') && (($i * 7) + ($j + 1)) == date('j')) { //標註今日
-                //       echo "<td class='date today border border-white'>" . date('j');
-                //     } elseif ($i == 0 && $j < $startDayWeek) {
-                //       echo "<td class='date pmonth border border-white'>" . ($j + 1 - $startDayWeek + $pDays); //none
-                //     } elseif ((($i * 7) + ($j + 1)) - $startDayWeek > $monthDay) {
-                //       echo "<td class='date nmonth border border-white'>" . ($j - $nDays); //none
-                //     } else {
-                //       echo "<td class='date h4 border border-white'>" . (($i * 7) + ($j + 1) - $startDayWeek);
-                //     }
-                //     echo "</td>";
-                //   }
-                //   echo "<tr>";
-                // }
                 ?>
                 <?php
                 include 'holiday.php';
@@ -469,25 +232,23 @@
                     echo "<td class='position-relative border border-white'>";
                     $date = '';
                     if ($year == date('Y') && $thisMonth == date('m') && (($i * 7) + ($j + 1)) == date('j')) { //標註今日
-                            echo "<div class='date today position-absolute border border-white'>".date('j')."</div>";
+                      echo "<div class='date today position-absolute border border-white'>" . date('j') . "</div>";
                     }
                     if ($i == 0 && $j < $startDayWeek) {
                       echo "<div class='date pmonth position-absolute'>" . ($j + 1 - $startDayWeek + $pDays) . "</div>"; //none
                     } else if ((($i * 7) + ($j + 1) - $startDayWeek) > $monthDay) {
-                      echo "<div class='date nmonth position-absolute'>".($j - $nDays)."</div>"; //none
+                      echo "<div class='date nmonth position-absolute'>" . ($j - $nDays) . "</div>"; //none
                     } else {
                       $date = (($i * 7) + ($j + 1) - $startDayWeek);
                     }
                     echo $date;
-                    if (!empty($holiday[$thisMonth."-".$date])) {
-                      echo "<br><div class='sign  text-danger position-absolute'>" . $holiday[$thisMonth."-".$date] . "</div>";
+                    if (!empty($holiday[$thisMonth . "-" . $date])) {
+                      echo "<br><div class='sign  text-danger position-absolute'>" . $holiday[$thisMonth . "-" . $date] . "</div>";
                     };
                     echo "</div>";
                   }
                   echo "</tr>";
                 }
-                //     if ($year == date('Y') && $thisMonth == date('m') && (($i * 7) + ($j + 1)) == date('j')) { //標註今日
-                //       echo "<td class='date today border border-white'>" . date('j');
                 ?>
               </tbody>
             </table>
@@ -514,34 +275,10 @@
       </div>
     </div>
   </div>
-  <style>
-    <?php
+<style>
+ <?php
     if ($thisMonth == 1) {
       echo "
-  .f1{
-    right: 80%;
-    animation: f1 1.5s forwards;
-  }
-  .f2{
-    left: 75%;
-    animation: f2 1.5s .2s forwards;
-  }
-  .f3{
-    right: 30%;
-    animation: f3 1.5s .4s forwards;
-  }
-  .f4{
-    left: 20%;
-    animation: f4 1.5s .3s forwards;
-  }
-  .f5{
-    right: 50%;
-    animation: f5 1.5s .5s forwards;
-  }
-    .f1,.f2,.f3,.f4,.f5{
-      bottom: -100%;
-      width: 10%;
-    }
   @keyframes f1 {
     45%{
       right: 80%;
@@ -559,6 +296,7 @@
       bottom: 20%;
       width: 60%;
       opacity: 0;
+      display:none;
     }
   }
   @keyframes f2 {
@@ -569,15 +307,16 @@
     }
     50%{
       left: 55%;
-      bottom: 0%;
+      bottom: -15%;
       width: 50%;
       opacity: 1;
     }
     100%{
       left: 55%;
-      bottom: 0%;
+      bottom: -15%;
       width: 50%;
       opacity: 0;
+      display:none;
     }
   }
   @keyframes f3 {
@@ -597,25 +336,27 @@
       bottom: -10%;
       width: 40%;
       opacity: 0;
+      display:none;
     }
   }
   @keyframes f4 {
     45%{
       left: 20%;
-      bottom: 10%;
+      bottom: 20%;
       width: 10%;
     }
     50%{
       left: 0%;
-      bottom: -15%;
+      bottom: 10%;
       width: 55%;
       opacity: 1;
     }
     100%{
       left: 0%;
-      bottom: -15%;
+      bottom: 10%;
       width: 55%;
       opacity: 0;
+      display:none;
     }
   }
   @keyframes f5 {
@@ -625,18 +366,20 @@
       width: 10%;
     }
     50%{
-      right: 10%;
-      bottom: -10%;
-      width: 100%;
+      right: 30%;
+      bottom: 40%;
+      width: 50%;
       opacity: 1;
     }
     100%{
-      right: 10%;
-      bottom: -10%;
-      width: 100%;
+      right: 30%;
+      bottom: 40%;
+      width: 50%;
       opacity: 0;
+      display:none;
     }
   }
+  
   @media screen and (max-width: 768px) {
     .f1,.f2,.f3,.f4,.f5{
       bottom: -100%;
@@ -645,20 +388,21 @@
     @keyframes f1 {
     45%{
       right: 80%;
-      bottom: 70%;
+      bottom: 60%;
       width: 10%;
     }
     50%{
       right: 60%;
-      bottom: 60%;
+      bottom: 50%;
       width: 60%;
       opacity: 1;
     }
     100%{
       right: 60%;
-      bottom: 60%;
+      bottom: 50%;
       width: 60%;
       opacity: 0;
+      display:none;
     }
   }
   @keyframes f2 {
@@ -678,6 +422,7 @@
       bottom: 50%;
       width: 50%;
       opacity: 0;
+      display:none;
     }
   }
   @keyframes f3 {
@@ -697,6 +442,7 @@
       bottom: 60%;
       width: 40%;
       opacity: 0;
+      display:none;
     }
   }
   @keyframes f4 {
@@ -716,25 +462,27 @@
       bottom: 45%;
       width: 55%;
       opacity: 0;
+      display:none;
     }
   }
   @keyframes f5 {
     45%{
       right: 50%;
-      bottom: 60%;
+      bottom: 50%;
       width: 10%;
     }
     50%{
       right: 10%;
-      bottom: 60%;
-      width: 100%;
+      bottom: 40%;
+      width: 70%;
       opacity: 1;
     }
     100%{
       right: 10%;
-      bottom: 60%;
-      width: 100%;
+      bottom: 40%;
+      width: 60%;
       opacity: 0;
+      display:none;
     }
   }
   }";
