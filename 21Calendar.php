@@ -241,8 +241,12 @@
                       $date = (($i * 7) + ($j + 1) - $startDayWeek);
                     }
                     echo $date;
-                    if($thisMonth==5 && $j==0 && $i>0 && $i<2){
-                      echo "<br><div class='sign  text-danger position-absolute'>母親節</div>";
+                    if($thisMonth==5 && $j==0){
+                      if($startDayWeek==0 && $i>0 && $i<2){
+                        echo "<br><div class='sign  text-danger position-absolute'>母親節</div>";
+                      }elseif($startDayWeek>0 && $i>1 && $i<3){
+                        echo "<br><div class='sign  text-danger position-absolute'>母親節</div>";
+                      }
                     }elseif(!empty($holiday[$thisMonth . "-" . $date])) {
                       echo "<br><div class='sign  text-danger position-absolute'>" . $holiday[$thisMonth . "-" . $date] . "</div>";
                     };
