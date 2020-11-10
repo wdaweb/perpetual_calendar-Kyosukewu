@@ -225,7 +225,6 @@
                 ?>
                 <?php
                 include 'holiday.php';
-                //萬年曆本體2
                 for ($i = 0; $i < $week; $i++) {
                   echo "<tr>";
                   for ($j = 0; $j < 7; $j++) {
@@ -242,7 +241,9 @@
                       $date = (($i * 7) + ($j + 1) - $startDayWeek);
                     }
                     echo $date;
-                    if (!empty($holiday[$thisMonth . "-" . $date])) {
+                    if($thisMonth==5 && $j==0 && $i>0 && $i<2){
+                      echo "<br><div class='sign  text-danger position-absolute'>母親節</div>";
+                    }elseif(!empty($holiday[$thisMonth . "-" . $date])) {
                       echo "<br><div class='sign  text-danger position-absolute'>" . $holiday[$thisMonth . "-" . $date] . "</div>";
                     };
                     echo "</div>";
