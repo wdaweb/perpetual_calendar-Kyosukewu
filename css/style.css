@@ -1,15 +1,17 @@
 body {
   height: 100vh;
-  background-image: linear-gradient(135deg, #fff 30%, #eee 80%);
   overflow: hidden;
 }
 
 .card {
   box-shadow: 0px 0px 15px #555;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
 }
 
 .item {
   position: relative;
+  opacity: 1;
 }
 
 .overlay {
@@ -19,54 +21,51 @@ body {
   align-items: center;
   flex-direction: column;
   text-align: center;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.3);
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   color: #fff;
+  opacity: 1;
 }
 
 thead tr {
-  background: #333;
+  background: rgba(0, 0, 0, 0.4);
   height: 50px;
   color: #fff;
 }
 
 tbody tr {
-  background: #ddd;
+  background: rgba(0, 0, 0, 0.1);
 }
 
 tbody td {
   font-size: 20px;
   height: 12%;
-  color: #666;
+  color: #eee
 }
 
 tbody td:nth-child(6n+1) {
-  background: #fcc;
+  background: rgba(131, 80, 80, .4);
   color: #f77;
 }
 
 thead td:nth-child(6n+1) {
-  background: rgb(131, 18, 18);
+  background: rgba(131, 18, 18, .4);
 }
 
 .today {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #ccc;
-  color: #eee;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  color: #fff;
   background: rgb(124, 246, 255);
   box-shadow: 0 0 20px #fff;
-  text-shadow: 0 0 10px rgb(50, 111, 116);
-  /* opacity: .3; */
+  opacity: .5;
 }
 
 .pmonth,
@@ -74,8 +73,8 @@ thead td:nth-child(6n+1) {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #ccc;
-  color: #eee;
+  background: rgba(0, 0, 0, .2);
+  color: #444;
   top: 0;
   left: 0;
   right: 0;
@@ -84,12 +83,6 @@ thead td:nth-child(6n+1) {
 
 #pick {
   width: 300%;
-}
-
-.sday {
-  color: #f33 !important;
-  background: #ffa !important;
-  box-shadow: 0 0 20px #ffd;
 }
 
 .sign {
@@ -133,6 +126,10 @@ thead td:nth-child(6n+1) {
 }
 
 @media screen and (min-width: 1500px) {
+  .btn1 a{
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.3);
+  }
   table {
     height: 80vh;
   }
@@ -173,6 +170,13 @@ thead td:nth-child(6n+1) {
 }
 
 @media screen and (max-width: 1500px) and (min-width: 768px) {
+  .btn1 a{
+    text-decoration: none;
+  }
+  .sign {
+    font-size: 1rem;
+  }
+
   table {
     height: 75vh;
   }
@@ -191,7 +195,7 @@ thead td:nth-child(6n+1) {
 
   .card-body {
     position: relative;
-    padding: 1rem 1rem 3.5rem;
+    padding: 0 0 3.5rem;
   }
 
   .carousel-control-prev {

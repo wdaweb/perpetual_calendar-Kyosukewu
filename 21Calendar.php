@@ -11,7 +11,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <title>Kyosuke's Calendar</title>
 </head>
-
 <body>
   <?php
   //ini_set('display_errors','off');//關閉輸出錯誤訊息
@@ -21,7 +20,7 @@
   $month = date('m');
   ?>
   <div class="container-xxl">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
       <div class="container-fluid">
         <a class="navbar-brand" href="21Calendar.php" target="_self">Kyosuke's Calendar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -129,9 +128,9 @@
       <a class="text-center" href="21Calendar.php?year=<?php echo $rYear ?>&month=<?php echo $rMonth ?>">不喜歡這天？ 點擊這裡找尋新的命定之日！</a>
       <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
     </div>
-    <div class="card mb-3">
+    <div class="card mb-3 border-0">
       <div class="row g-0">
-        <div class="item col-md-3 border-right">
+        <div class="item col-md-3">
           <?php
           switch ($thisMonth) {
             case '1':
@@ -228,10 +227,10 @@
                 for ($i = 0; $i < $week; $i++) {
                   echo "<tr>";
                   for ($j = 0; $j < 7; $j++) {
-                    echo "<td class='position-relative border border-white'>";
+                    echo "<td class='position-relative border border-secondary'>";
                     $date = '';
                     if ($year == date('Y') && $thisMonth == date('m') && (($i * 7) + ($j + 1)) == date('j')) { //標註今日
-                      echo "<div class='date today position-absolute border border-white'>" . date('j') . "</div>";
+                      echo "<div class='date today position-absolute border border-secondary'>" . date('j') . "</div>";
                     }
                     if ($i == 0 && $j < $startDayWeek) {
                       echo "<div class='date pmonth position-absolute'>" . ($j + 1 - $startDayWeek + $pDays) . "</div>"; //none
@@ -241,14 +240,14 @@
                       $date = (($i * 7) + ($j + 1) - $startDayWeek);
                     }
                     echo $date;
-                    if($thisMonth==5 && $j==0){
-                      if($startDayWeek==0 && $i==1){
+                    if ($thisMonth == 5 && $j == 0) {
+                      if ($startDayWeek == 0 && $i == 1) {
                         echo "<br><div class='sign  text-danger position-absolute'>母親節</div>";
-                      }elseif($startDayWeek>0 && $i==2){
+                      } elseif ($startDayWeek > 0 && $i == 2) {
                         echo "<br><div class='sign  text-danger position-absolute'>母親節</div>";
                       }
-                    }elseif(!empty($holiday[$thisMonth . "-" . $date])) {
-                      echo "<br><div class='sign  text-danger position-absolute'>" . $holiday[$thisMonth . "-" . $date] . "</div>";
+                    } elseif (!empty($holiday[$thisMonth . "-" . $date])) {
+                      echo "<br><div class='sign  text-light position-absolute'>" . $holiday[$thisMonth . "-" . $date] . "</div>";
                     };
                     echo "</div>";
                   }
@@ -259,20 +258,20 @@
             </table>
             <div class="btn1">
               <a class="carousel-control-prev" href="?year=<?php echo $preYear ?>&month=<?php echo $preMonth ?>" role="button" data-slide="prev">
-                <p class="text-dark h2 fas fa-angle-left"></p>
-                <p class="d1 text-dark">Month</p>
+                <p class="h2 fas fa-angle-left"></p>
+                <p class="d1">Month</p>
               </a>
               <a class="btn2-p carousel-control-prev" href="?year=<?php echo $year - 1 ?>&month=<?php echo $thisMonth ?>" role="button" data-slide="prev">
-                <p class="text-dark h2 fas fa-angle-double-left"></p>
-                <p class="d1 text-dark">Year</p>
+                <p class="h2 fas fa-angle-double-left"></p>
+                <p class="d1">Year</p>
               </a>
               <a class="carousel-control-next" href="?year=<?php echo $nextYear ?>&month=<?php echo $nextMonth ?>" role="button" data-slide="next">
-                <span class="text-dark h2 fas fa-angle-right"></span>
-                <p class="d2 text-dark">Month</p>
+                <span class="h2 fas fa-angle-right"></span>
+                <p class="d2">Month</p>
               </a>
               <a class="btn2-n carousel-control-next" href="?year=<?php echo $year + 1 ?>&month=<?php echo $thisMonth ?>" role="button" data-slide="prev">
-                <p class="text-dark h2 fas fa-angle-double-right"></p>
-                <p class="d2 text-dark">Year</p>
+                <p class="h2 fas fa-angle-double-right"></p>
+                <p class="d2">Year</p>
               </a>
             </div>
           </div>
@@ -280,8 +279,64 @@
       </div>
     </div>
   </div>
-<style>
- <?php
+  <style>
+    body {
+      <?php
+      switch ($thisMonth) {
+        case '1':
+          echo "background:url(https://i.postimg.cc/j23FGxvN/07.jpg);";
+          echo "background-size: cover;";
+          break;
+        case '2':
+          echo "background:url(https://i.postimg.cc/CxfSwt3k/02.jpg);";
+          echo "background-size: cover;";
+          break;
+        case '3':
+          echo "background:url(https://i.postimg.cc/BbY4vGZc/03.jpg);";
+          echo "background-size: cover;";
+          break;
+        case '4':
+          echo "background:url(https://i.postimg.cc/wTvKFPFL/01.jpg);";
+          echo "background-size: cover;";
+          break;
+        case '5':
+          echo "background:url(https://i.postimg.cc/NFjnJ98B/06.jpg);";
+          echo "background-size: cover;";
+          break;
+        case '6':
+          echo "background:url(https://i.postimg.cc/4yNXZ3Gx/01.jpg);";
+          echo "background-size: cover;";
+          break;
+        case '7':
+          echo "background:url(https://i.postimg.cc/9MpSYt7L/02.jpg);";
+          echo "background-size: cover;";
+          break;
+        case '8':
+          echo "background:url(https://i.postimg.cc/hP3kYr3w/08.jpg);";
+          echo "background-size: cover;";
+          break;
+        case '9':
+          echo "background:url(https://i.postimg.cc/26CDF5V7/09.jpg);";
+          echo "background-size: cover;";
+          break;
+        case '10':
+          echo "background:url(https://i.postimg.cc/brJfWF0G/10.jpg);";
+          echo "background-size: cover;";
+          break;
+        case '11':
+          echo "background:url(https://i.postimg.cc/x84V2yg6/11.jpg);";
+          echo "background-size: cover;";
+          break;
+        case '12':
+          echo "background:url(https://i.postimg.cc/Kcq2BxFt/12.jpg);";
+          echo "background-size: cover;";
+          break;
+      };
+
+      ?>
+    }
+
+    <?php
     if ($thisMonth == 1) {
       echo "
   @keyframes f1 {
@@ -296,12 +351,15 @@
       width: 60%;
       opacity: 1;
     }
-    100%{
+    99%{
       right: 60%;
       bottom: 20%;
       width: 60%;
+      z-index:1;
       opacity: 0;
-      display:none;
+    }
+    100%{
+      z-index:-1;
     }
   }
   @keyframes f2 {
@@ -316,52 +374,61 @@
       width: 50%;
       opacity: 1;
     }
-    100%{
+    99%{
       left: 55%;
       bottom: -15%;
       width: 50%;
+      z-index:1;
       opacity: 0;
-      display:none;
+    }
+    100%{
+      z-index:-1;
     }
   }
   @keyframes f3 {
     45%{
       right: 30%;
-      bottom: 15%;
+      bottom: 30%;
       width: 10%;
     }
     50%{
       right: 10%;
-      bottom: -10%;
+      bottom: 20%;
       width: 40%;
       opacity: 1;
     }
-    100%{
+    99%{
       right: 10%;
-      bottom: -10%;
+      bottom: 20%;
       width: 40%;
+      z-index:1;
       opacity: 0;
-      display:none;
+    }
+    100%{
+      z-index:-1;
     }
   }
   @keyframes f4 {
     45%{
       left: 20%;
-      bottom: 20%;
+      bottom: 30%;
       width: 10%;
     }
     50%{
       left: 0%;
-      bottom: 10%;
+      bottom: 20%;
       width: 55%;
       opacity: 1;
     }
-    100%{
+    99%{
       left: 0%;
-      bottom: 10%;
+      bottom: 20%;
       width: 55%;
+      z-index:1;
       opacity: 0;
-      display:none;
+    }
+    100%{
+      z-index:-1;
     }
   }
   @keyframes f5 {
@@ -376,12 +443,15 @@
       width: 50%;
       opacity: 1;
     }
-    100%{
+    99%{
       right: 30%;
       bottom: 40%;
       width: 50%;
+      z-index:1;
       opacity: 0;
-      display:none;
+    }
+    100%{
+      z-index:-1;
     }
   }
   
@@ -407,7 +477,6 @@
       bottom: 50%;
       width: 60%;
       opacity: 0;
-      display:none;
     }
   }
   @keyframes f2 {
@@ -427,7 +496,6 @@
       bottom: 50%;
       width: 50%;
       opacity: 0;
-      display:none;
     }
   }
   @keyframes f3 {
@@ -447,7 +515,6 @@
       bottom: 60%;
       width: 40%;
       opacity: 0;
-      display:none;
     }
   }
   @keyframes f4 {
@@ -467,7 +534,6 @@
       bottom: 45%;
       width: 55%;
       opacity: 0;
-      display:none;
     }
   }
   @keyframes f5 {
@@ -487,7 +553,6 @@
       bottom: 40%;
       width: 60%;
       opacity: 0;
-      display:none;
     }
   }
   }";
