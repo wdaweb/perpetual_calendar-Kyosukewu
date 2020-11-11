@@ -5,12 +5,320 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/style.css">
+  <!-- <link rel="stylesheet" href="css/style.css"> -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js" integrity="sha384-BOsAfwzjNJHrJ8cZidOg56tcQWfp6y72vEJ8xQ9w6Quywb24iOsW913URv1IS4GD" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/a1381bb91e.js" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <title>Kyosuke's Calendar</title>
 </head>
+<style>
+body {
+  height: 100vh;
+  /* background-image: linear-gradient(135deg, #fff 30%, #eee 80%); */
+  overflow: hidden;
+}
+
+.card {
+  box-shadow: 0px 0px 15px #555;
+  opacity: .5;
+  backdrop-filter: blur(50px);
+}
+
+.item {
+  position: relative;
+  opacity: 1;
+}
+
+.overlay {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.4);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #fff;
+  opacity: 1;
+}
+thead tr {
+  background: #333;
+  height: 50px;
+  color: #fff;
+}
+
+tbody tr {
+  background: #ddd;
+}
+
+tbody td {
+  font-size: 20px;
+  height: 12%;
+  color: #666;
+}
+
+tbody td:nth-child(6n+1) {
+  background: #fcc;
+  color: #f77;
+}
+
+thead td:nth-child(6n+1) {
+  background: rgb(131, 18, 18);
+}
+
+.today {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ccc;
+  color: #eee;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #fff;
+  background: rgb(124, 246, 255);
+  box-shadow: 0 0 20px #fff;
+  text-shadow: 0 0 10px rgb(50, 111, 116);
+  /* opacity: .3; */
+}
+
+.pmonth,
+.nmonth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ccc;
+  color: #eee;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#pick {
+  width: 300%;
+}
+
+.sday {
+  color: #f33 !important;
+  background: #ffa !important;
+  box-shadow: 0 0 20px #ffd;
+}
+
+.sign {
+  bottom: 10%;
+  left: 0;
+  right: 0;
+}
+
+.f1 {
+  right: 80%;
+  animation: f1 1.5s forwards;
+}
+
+.f2 {
+  left: 75%;
+  animation: f2 1.5s .2s forwards;
+}
+
+.f3 {
+  right: 30%;
+  animation: f3 1.5s .4s forwards;
+}
+
+.f4 {
+  left: 20%;
+  animation: f4 1.5s .3s forwards;
+}
+
+.f5 {
+  right: 50%;
+  animation: f5 1.5s .5s forwards;
+}
+
+.f1,
+.f2,
+.f3,
+.f4,
+.f5 {
+  bottom: -100%;
+  width: 10%;
+}
+
+@media screen and (min-width: 1500px) {
+  table {
+    height: 80vh;
+  }
+
+  .alert {
+    display: none;
+    top: 3%;
+    right: 0%;
+    opacity: .9;
+    z-index: 10;
+  }
+
+  .btn2 {
+    display: none;
+  }
+
+  .carousel-control-prev {
+    left: -5%;
+    width: 5%;
+    flex-direction: column;
+  }
+
+  .carousel-control-next {
+    right: -5%;
+    width: 5%;
+    flex-direction: column;
+  }
+
+  .btn2-p {
+    left: -8%;
+    width: 3%;
+  }
+
+  .btn2-n {
+    right: -8%;
+    width: 3%;
+  }
+}
+
+@media screen and (max-width: 1500px) and (min-width: 768px) {
+  table {
+    height: 75vh;
+  }
+
+  .alert {
+    display: none;
+    top: 3%;
+    right: 0%;
+    opacity: .9;
+    z-index: 10;
+  }
+
+  .btn2 {
+    display: none;
+  }
+
+  .card-body {
+    position: relative;
+    padding: 1rem 1rem 3.5rem;
+  }
+
+  .carousel-control-prev {
+    left: 20%;
+    width: 5%;
+    top: 95%;
+    height: 5%;
+  }
+
+  .carousel-control-next {
+    right: 20%;
+    width: 5%;
+    top: 95%;
+    height: 5%;
+  }
+
+  .d1 {
+    margin-left: .5rem;
+    margin-bottom: .5rem;
+  }
+
+  .d2 {
+    margin-right: .5rem;
+    margin-bottom: .5rem;
+    order: -1;
+  }
+
+  .btn2-p {
+    left: 5%;
+    width: 3%;
+  }
+
+  .btn2-n {
+    right: 5%;
+    width: 3%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .sign {
+    font-size: .5rem;
+    bottom: 0%;
+    left: 0;
+    right: 0;
+  }
+
+  .alert {
+    display: none;
+    top: 3%;
+    right: 0%;
+    opacity: .9;
+    z-index: 10;
+  }
+
+  table {
+    height: 45vh;
+  }
+
+  .btn1 {
+    display: none;
+  }
+
+  .card-body {
+    position: relative;
+    padding: 0;
+  }
+
+  .carousel-control-prev {
+    left: 15%;
+    width: 5%;
+    justify-content: center;
+  }
+
+  .carousel-control-next {
+    right: 15%;
+    width: 5%;
+    justify-content: center;
+  }
+
+  .btn2-p {
+    left: 5%;
+    width: 3%;
+  }
+
+  .btn2-n {
+    right: 5%;
+    width: 3%;
+  }
+}
+
+@media screen and (max-height: 700px) {
+
+  .d1,
+  .d2 {
+    display: none;
+  }
+
+  .carousel-control-prev {
+    width: 5%;
+    bottom: 1%;
+    justify-content: flex-end;
+  }
+
+  .carousel-control-next {
+    width: 5%;
+    bottom: 1%;
+    justify-content: flex-end;
+  }
+}
+</style>
 
 <body>
   <?php
@@ -281,7 +589,62 @@
     </div>
   </div>
 <style>
+body{
  <?php
+              switch ($thisMonth) {
+                case '1':
+                  echo "background:url(https://i.postimg.cc/wTvKFPFL/01.jpg);";
+                  echo "background-size: cover;";
+                  break;
+                case '2':
+                  echo "background:url(https://i.postimg.cc/9MpSYt7L/02.jpg);";
+                  echo "background-size: cover;";
+                  break;
+                case '3':
+                  echo "background:url(https://i.postimg.cc/pLwgWdvJ/03.jpg);";
+                  echo "background-size: cover;";
+                  break;
+                case '4':
+                  echo "background:url(https://i.postimg.cc/kg60Pb05/04.jpg);";
+                  echo "background-size: cover;";
+                  break;
+                case '5':
+                  echo "background:url(https://i.postimg.cc/pTx4j1p9/05.jpg);";
+                  echo "background-size: cover;";
+                  break;
+                case '6':
+                  echo "background:url(https://i.postimg.cc/NFjnJ98B/06.jpg);";
+                  echo "background-size: cover;";
+                  break;
+                case '7':
+                  echo "background:url(https://i.postimg.cc/j23FGxvN/07.jpg);";
+                  echo "background-size: cover;";
+                  break;
+                case '8':
+                  echo "background:url(https://i.postimg.cc/hP3kYr3w/08.jpg);";
+                  echo "background-size: cover;";
+                  break;
+                case '9':
+                  echo "background:url(https://i.postimg.cc/8CLxjVPQ/09.jpg);";
+                  echo "background-size: cover;";
+                  break;
+                case '10':
+                  echo "background:url(https://i.postimg.cc/WbtK0Zb7/10.jpg);";
+                  echo "background-size: cover;";
+                  break;
+                case '11':
+                  echo "background:url(https://i.postimg.cc/fTFPCbVQ/11.jpg);";
+                  echo "background-size: cover;";
+                  break;
+                case '12':
+                  echo "background:url(https://i.postimg.cc/VkCVVctr/12.jpg);";
+                  echo "background-size: cover;";
+                  break;
+              };
+
+?>
+}
+<?php
     if ($thisMonth == 1) {
       echo "
   @keyframes f1 {
