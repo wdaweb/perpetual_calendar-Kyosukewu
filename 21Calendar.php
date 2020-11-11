@@ -5,321 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
-  <!-- <link rel="stylesheet" href="css/style.css"> -->
+  <link rel="stylesheet" href="css/style.css">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js" integrity="sha384-BOsAfwzjNJHrJ8cZidOg56tcQWfp6y72vEJ8xQ9w6Quywb24iOsW913URv1IS4GD" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/a1381bb91e.js" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <title>Kyosuke's Calendar</title>
 </head>
-<style>
-body {
-  height: 100vh;
-  /* background-image: linear-gradient(135deg, #fff 30%, #eee 80%); */
-  overflow: hidden;
-}
-
-.card {
-  box-shadow: 0px 0px 15px #555;
-  opacity: .5;
-  backdrop-filter: blur(50px);
-}
-
-.item {
-  position: relative;
-  opacity: 1;
-}
-
-.overlay {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.4);
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  color: #fff;
-  opacity: 1;
-}
-thead tr {
-  background: #333;
-  height: 50px;
-  color: #fff;
-}
-
-tbody tr {
-  background: #ddd;
-}
-
-tbody td {
-  font-size: 20px;
-  height: 12%;
-  color: #666;
-}
-
-tbody td:nth-child(6n+1) {
-  background: #fcc;
-  color: #f77;
-}
-
-thead td:nth-child(6n+1) {
-  background: rgb(131, 18, 18);
-}
-
-.today {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #ccc;
-  color: #eee;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  color: #fff;
-  background: rgb(124, 246, 255);
-  box-shadow: 0 0 20px #fff;
-  text-shadow: 0 0 10px rgb(50, 111, 116);
-  /* opacity: .3; */
-}
-
-.pmonth,
-.nmonth {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #ccc;
-  color: #eee;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-#pick {
-  width: 300%;
-}
-
-.sday {
-  color: #f33 !important;
-  background: #ffa !important;
-  box-shadow: 0 0 20px #ffd;
-}
-
-.sign {
-  bottom: 10%;
-  left: 0;
-  right: 0;
-}
-
-.f1 {
-  right: 80%;
-  animation: f1 1.5s forwards;
-}
-
-.f2 {
-  left: 75%;
-  animation: f2 1.5s .2s forwards;
-}
-
-.f3 {
-  right: 30%;
-  animation: f3 1.5s .4s forwards;
-}
-
-.f4 {
-  left: 20%;
-  animation: f4 1.5s .3s forwards;
-}
-
-.f5 {
-  right: 50%;
-  animation: f5 1.5s .5s forwards;
-}
-
-.f1,
-.f2,
-.f3,
-.f4,
-.f5 {
-  bottom: -100%;
-  width: 10%;
-}
-
-@media screen and (min-width: 1500px) {
-  table {
-    height: 80vh;
-  }
-
-  .alert {
-    display: none;
-    top: 3%;
-    right: 0%;
-    opacity: .9;
-    z-index: 10;
-  }
-
-  .btn2 {
-    display: none;
-  }
-
-  .carousel-control-prev {
-    left: -5%;
-    width: 5%;
-    flex-direction: column;
-  }
-
-  .carousel-control-next {
-    right: -5%;
-    width: 5%;
-    flex-direction: column;
-  }
-
-  .btn2-p {
-    left: -8%;
-    width: 3%;
-  }
-
-  .btn2-n {
-    right: -8%;
-    width: 3%;
-  }
-}
-
-@media screen and (max-width: 1500px) and (min-width: 768px) {
-  table {
-    height: 75vh;
-  }
-
-  .alert {
-    display: none;
-    top: 3%;
-    right: 0%;
-    opacity: .9;
-    z-index: 10;
-  }
-
-  .btn2 {
-    display: none;
-  }
-
-  .card-body {
-    position: relative;
-    padding: 1rem 1rem 3.5rem;
-  }
-
-  .carousel-control-prev {
-    left: 20%;
-    width: 5%;
-    top: 95%;
-    height: 5%;
-  }
-
-  .carousel-control-next {
-    right: 20%;
-    width: 5%;
-    top: 95%;
-    height: 5%;
-  }
-
-  .d1 {
-    margin-left: .5rem;
-    margin-bottom: .5rem;
-  }
-
-  .d2 {
-    margin-right: .5rem;
-    margin-bottom: .5rem;
-    order: -1;
-  }
-
-  .btn2-p {
-    left: 5%;
-    width: 3%;
-  }
-
-  .btn2-n {
-    right: 5%;
-    width: 3%;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .sign {
-    font-size: .5rem;
-    bottom: 0%;
-    left: 0;
-    right: 0;
-  }
-
-  .alert {
-    display: none;
-    top: 3%;
-    right: 0%;
-    opacity: .9;
-    z-index: 10;
-  }
-
-  table {
-    height: 45vh;
-  }
-
-  .btn1 {
-    display: none;
-  }
-
-  .card-body {
-    position: relative;
-    padding: 0;
-  }
-
-  .carousel-control-prev {
-    left: 15%;
-    width: 5%;
-    justify-content: center;
-  }
-
-  .carousel-control-next {
-    right: 15%;
-    width: 5%;
-    justify-content: center;
-  }
-
-  .btn2-p {
-    left: 5%;
-    width: 3%;
-  }
-
-  .btn2-n {
-    right: 5%;
-    width: 3%;
-  }
-}
-
-@media screen and (max-height: 700px) {
-
-  .d1,
-  .d2 {
-    display: none;
-  }
-
-  .carousel-control-prev {
-    width: 5%;
-    bottom: 1%;
-    justify-content: flex-end;
-  }
-
-  .carousel-control-next {
-    width: 5%;
-    bottom: 1%;
-    justify-content: flex-end;
-  }
-}
-</style>
-
 <body>
   <?php
   //ini_set('display_errors','off');//關閉輸出錯誤訊息
@@ -329,7 +20,7 @@ thead td:nth-child(6n+1) {
   $month = date('m');
   ?>
   <div class="container-xxl">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
       <div class="container-fluid">
         <a class="navbar-brand" href="21Calendar.php" target="_self">Kyosuke's Calendar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -437,9 +128,9 @@ thead td:nth-child(6n+1) {
       <a class="text-center" href="21Calendar.php?year=<?php echo $rYear ?>&month=<?php echo $rMonth ?>">不喜歡這天？ 點擊這裡找尋新的命定之日！</a>
       <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
     </div>
-    <div class="card mb-3">
+    <div class="card mb-3 border-0">
       <div class="row g-0">
-        <div class="item col-md-3 border-right">
+        <div class="item col-md-3">
           <?php
           switch ($thisMonth) {
             case '1':
@@ -536,10 +227,10 @@ thead td:nth-child(6n+1) {
                 for ($i = 0; $i < $week; $i++) {
                   echo "<tr>";
                   for ($j = 0; $j < 7; $j++) {
-                    echo "<td class='position-relative border border-white'>";
+                    echo "<td class='position-relative border border-secondary'>";
                     $date = '';
                     if ($year == date('Y') && $thisMonth == date('m') && (($i * 7) + ($j + 1)) == date('j')) { //標註今日
-                      echo "<div class='date today position-absolute border border-white'>" . date('j') . "</div>";
+                      echo "<div class='date today position-absolute border border-secondary'>" . date('j') . "</div>";
                     }
                     if ($i == 0 && $j < $startDayWeek) {
                       echo "<div class='date pmonth position-absolute'>" . ($j + 1 - $startDayWeek + $pDays) . "</div>"; //none
@@ -549,14 +240,14 @@ thead td:nth-child(6n+1) {
                       $date = (($i * 7) + ($j + 1) - $startDayWeek);
                     }
                     echo $date;
-                    if($thisMonth==5 && $j==0){
-                      if($startDayWeek==0 && $i==1){
+                    if ($thisMonth == 5 && $j == 0) {
+                      if ($startDayWeek == 0 && $i == 1) {
                         echo "<br><div class='sign  text-danger position-absolute'>母親節</div>";
-                      }elseif($startDayWeek>0 && $i==2){
+                      } elseif ($startDayWeek > 0 && $i == 2) {
                         echo "<br><div class='sign  text-danger position-absolute'>母親節</div>";
                       }
-                    }elseif(!empty($holiday[$thisMonth . "-" . $date])) {
-                      echo "<br><div class='sign  text-danger position-absolute'>" . $holiday[$thisMonth . "-" . $date] . "</div>";
+                    } elseif (!empty($holiday[$thisMonth . "-" . $date])) {
+                      echo "<br><div class='sign  text-light position-absolute'>" . $holiday[$thisMonth . "-" . $date] . "</div>";
                     };
                     echo "</div>";
                   }
@@ -567,20 +258,20 @@ thead td:nth-child(6n+1) {
             </table>
             <div class="btn1">
               <a class="carousel-control-prev" href="?year=<?php echo $preYear ?>&month=<?php echo $preMonth ?>" role="button" data-slide="prev">
-                <p class="text-dark h2 fas fa-angle-left"></p>
-                <p class="d1 text-dark">Month</p>
+                <p class="h2 fas fa-angle-left"></p>
+                <p class="d1">Month</p>
               </a>
               <a class="btn2-p carousel-control-prev" href="?year=<?php echo $year - 1 ?>&month=<?php echo $thisMonth ?>" role="button" data-slide="prev">
-                <p class="text-dark h2 fas fa-angle-double-left"></p>
-                <p class="d1 text-dark">Year</p>
+                <p class="h2 fas fa-angle-double-left"></p>
+                <p class="d1">Year</p>
               </a>
               <a class="carousel-control-next" href="?year=<?php echo $nextYear ?>&month=<?php echo $nextMonth ?>" role="button" data-slide="next">
-                <span class="text-dark h2 fas fa-angle-right"></span>
-                <p class="d2 text-dark">Month</p>
+                <span class="h2 fas fa-angle-right"></span>
+                <p class="d2">Month</p>
               </a>
               <a class="btn2-n carousel-control-next" href="?year=<?php echo $year + 1 ?>&month=<?php echo $thisMonth ?>" role="button" data-slide="prev">
-                <p class="text-dark h2 fas fa-angle-double-right"></p>
-                <p class="d2 text-dark">Year</p>
+                <p class="h2 fas fa-angle-double-right"></p>
+                <p class="d2">Year</p>
               </a>
             </div>
           </div>
@@ -588,63 +279,64 @@ thead td:nth-child(6n+1) {
       </div>
     </div>
   </div>
-<style>
-body{
- <?php
-              switch ($thisMonth) {
-                case '1':
-                  echo "background:url(https://i.postimg.cc/wTvKFPFL/01.jpg);";
-                  echo "background-size: cover;";
-                  break;
-                case '2':
-                  echo "background:url(https://i.postimg.cc/9MpSYt7L/02.jpg);";
-                  echo "background-size: cover;";
-                  break;
-                case '3':
-                  echo "background:url(https://i.postimg.cc/pLwgWdvJ/03.jpg);";
-                  echo "background-size: cover;";
-                  break;
-                case '4':
-                  echo "background:url(https://i.postimg.cc/kg60Pb05/04.jpg);";
-                  echo "background-size: cover;";
-                  break;
-                case '5':
-                  echo "background:url(https://i.postimg.cc/pTx4j1p9/05.jpg);";
-                  echo "background-size: cover;";
-                  break;
-                case '6':
-                  echo "background:url(https://i.postimg.cc/NFjnJ98B/06.jpg);";
-                  echo "background-size: cover;";
-                  break;
-                case '7':
-                  echo "background:url(https://i.postimg.cc/j23FGxvN/07.jpg);";
-                  echo "background-size: cover;";
-                  break;
-                case '8':
-                  echo "background:url(https://i.postimg.cc/hP3kYr3w/08.jpg);";
-                  echo "background-size: cover;";
-                  break;
-                case '9':
-                  echo "background:url(https://i.postimg.cc/8CLxjVPQ/09.jpg);";
-                  echo "background-size: cover;";
-                  break;
-                case '10':
-                  echo "background:url(https://i.postimg.cc/WbtK0Zb7/10.jpg);";
-                  echo "background-size: cover;";
-                  break;
-                case '11':
-                  echo "background:url(https://i.postimg.cc/fTFPCbVQ/11.jpg);";
-                  echo "background-size: cover;";
-                  break;
-                case '12':
-                  echo "background:url(https://i.postimg.cc/VkCVVctr/12.jpg);";
-                  echo "background-size: cover;";
-                  break;
-              };
+  <style>
+    body {
+      <?php
+      switch ($thisMonth) {
+        case '1':
+          echo "background:url(https://i.postimg.cc/j23FGxvN/07.jpg);";
+          echo "background-size: cover;";
+          break;
+        case '2':
+          echo "background:url(https://i.postimg.cc/CxfSwt3k/02.jpg);";
+          echo "background-size: cover;";
+          break;
+        case '3':
+          echo "background:url(https://i.postimg.cc/BbY4vGZc/03.jpg);";
+          echo "background-size: cover;";
+          break;
+        case '4':
+          echo "background:url(https://i.postimg.cc/wTvKFPFL/01.jpg);";
+          echo "background-size: cover;";
+          break;
+        case '5':
+          echo "background:url(https://i.postimg.cc/NFjnJ98B/06.jpg);";
+          echo "background-size: cover;";
+          break;
+        case '6':
+          echo "background:url(https://i.postimg.cc/4yNXZ3Gx/01.jpg);";
+          echo "background-size: cover;";
+          break;
+        case '7':
+          echo "background:url(https://i.postimg.cc/9MpSYt7L/02.jpg);";
+          echo "background-size: cover;";
+          break;
+        case '8':
+          echo "background:url(https://i.postimg.cc/hP3kYr3w/08.jpg);";
+          echo "background-size: cover;";
+          break;
+        case '9':
+          echo "background:url(https://i.postimg.cc/26CDF5V7/09.jpg);";
+          echo "background-size: cover;";
+          break;
+        case '10':
+          echo "background:url(https://i.postimg.cc/brJfWF0G/10.jpg);";
+          echo "background-size: cover;";
+          break;
+        case '11':
+          echo "background:url(https://i.postimg.cc/x84V2yg6/11.jpg);";
+          echo "background-size: cover;";
+          break;
+        case '12':
+          echo "background:url(https://i.postimg.cc/Kcq2BxFt/12.jpg);";
+          echo "background-size: cover;";
+          break;
+      };
 
-?>
-}
-<?php
+      ?>
+    }
+
+    <?php
     if ($thisMonth == 1) {
       echo "
   @keyframes f1 {
@@ -659,12 +351,15 @@ body{
       width: 60%;
       opacity: 1;
     }
-    100%{
+    99%{
       right: 60%;
       bottom: 20%;
       width: 60%;
+      z-index:1;
       opacity: 0;
-      display:none;
+    }
+    100%{
+      z-index:-1;
     }
   }
   @keyframes f2 {
@@ -679,52 +374,61 @@ body{
       width: 50%;
       opacity: 1;
     }
-    100%{
+    99%{
       left: 55%;
       bottom: -15%;
       width: 50%;
+      z-index:1;
       opacity: 0;
-      display:none;
+    }
+    100%{
+      z-index:-1;
     }
   }
   @keyframes f3 {
     45%{
       right: 30%;
-      bottom: 15%;
+      bottom: 30%;
       width: 10%;
     }
     50%{
       right: 10%;
-      bottom: -10%;
+      bottom: 20%;
       width: 40%;
       opacity: 1;
     }
-    100%{
+    99%{
       right: 10%;
-      bottom: -10%;
+      bottom: 20%;
       width: 40%;
+      z-index:1;
       opacity: 0;
-      display:none;
+    }
+    100%{
+      z-index:-1;
     }
   }
   @keyframes f4 {
     45%{
       left: 20%;
-      bottom: 20%;
+      bottom: 30%;
       width: 10%;
     }
     50%{
       left: 0%;
-      bottom: 10%;
+      bottom: 20%;
       width: 55%;
       opacity: 1;
     }
-    100%{
+    99%{
       left: 0%;
-      bottom: 10%;
+      bottom: 20%;
       width: 55%;
+      z-index:1;
       opacity: 0;
-      display:none;
+    }
+    100%{
+      z-index:-1;
     }
   }
   @keyframes f5 {
@@ -739,12 +443,15 @@ body{
       width: 50%;
       opacity: 1;
     }
-    100%{
+    99%{
       right: 30%;
       bottom: 40%;
       width: 50%;
+      z-index:1;
       opacity: 0;
-      display:none;
+    }
+    100%{
+      z-index:-1;
     }
   }
   
@@ -770,7 +477,6 @@ body{
       bottom: 50%;
       width: 60%;
       opacity: 0;
-      display:none;
     }
   }
   @keyframes f2 {
@@ -790,7 +496,6 @@ body{
       bottom: 50%;
       width: 50%;
       opacity: 0;
-      display:none;
     }
   }
   @keyframes f3 {
@@ -810,7 +515,6 @@ body{
       bottom: 60%;
       width: 40%;
       opacity: 0;
-      display:none;
     }
   }
   @keyframes f4 {
@@ -830,7 +534,6 @@ body{
       bottom: 45%;
       width: 55%;
       opacity: 0;
-      display:none;
     }
   }
   @keyframes f5 {
@@ -850,7 +553,6 @@ body{
       bottom: 40%;
       width: 60%;
       opacity: 0;
-      display:none;
     }
   }
   }";
